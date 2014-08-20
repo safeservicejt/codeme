@@ -94,31 +94,39 @@ class Route
                 return false;
             }
 
+
             for ($i = 0; $i < $totalRouteName; $i++) {
                 $valueRouteName = $listRouteName[$i];
 
                 if (preg_match('/\{(\w+)\}/i', $valueRouteName, $matchesValue)) {
 
-                    if (!preg_match('/' . self::$listPatternNames[$matchesValue[1]] . '/i', $listVarNames[$i])) {
+
+                    if (!preg_match('/^' . self::$listPatternNames[$matchesValue[1]] . '$/i', $listVarNames[$i])) {
 
                         self::$listPatternNames = array();
                         return false;
                     }
+
+
                 } else {
                     if ($valueRouteName != $listVarNames[$i]) {
                         self::$listPatternNames = array();
 
                         return false;
                     }
+
+
                 }
 
-                self::$listPatternNames = array();
 
-                self::loadController($controllerName);
-
-                die();
 
             }
+
+            self::$listPatternNames = array();
+
+            self::loadController($controllerName);
+
+            die();
 
         }
 

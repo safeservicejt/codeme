@@ -11,34 +11,11 @@ require('codeme_start.php');
  *
  */
 
-//Database::connect();
-//
-//$query = Database::query("select * from users limit 0,1");
+Route::pattern('id','\d+');
+Route::get('{id}','welcome@number');
 
-//$row=Database::fetch_assoc($query,function($result){
-//    print_r($result);
-//
-//});
-
-//print_r($row);
-
-//Route::get('', 'welcome');
-
-Route::get('thong-tin', function () {
-    echo 'fixed';
-});
-
-Route::pattern('id', '\d+');
-Route::get('ac/{id}/at', 'welcome@ab');
-
-Route::get('ac', 'welcome');
-
-Route::pattern('all', '.*?');
-Route::get('{all}', 'welcome');
-
-
-
-
+Route::pattern('id','\d+');
+Route::get('ac/{id}','welcome@number');
 
 
 ?>
