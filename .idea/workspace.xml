@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="030accbb-038c-435e-9350-3a3e7a9a4016" name="Default" comment="" />
+    <ignored path="codeme.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="codeme" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="index.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="3" selection-start="60" selection-end="151" vertical-scroll-proportion="0.042662118" vertical-offset="77" max-vertical-offset="663">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cache.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/Cache.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="22" selection-start="700" selection-end="700" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="1360">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="File.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/File.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="20" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="2890">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="welcome.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/welcome.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="5" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="697">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Validator.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/Validator.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="0" selection-start="63" selection-end="63" vertical-scroll-proportion="-3.5384614" vertical-offset="10" max-vertical-offset="1921">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Route.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/Route.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="80" column="13" selection-start="1964" selection-end="1964" vertical-scroll-proportion="0.0" vertical-offset="1360" max-vertical-offset="2703">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindManager">
+    <FindUsagesManager>
+      <setting name="OPEN_NEW_TAB" value="false" />
+    </FindUsagesManager>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/application/controllers/page_not_found.php" />
+        <option value="$PROJECT_DIR$/includes/Model.php" />
+        <option value="$PROJECT_DIR$/includes/Dir.php" />
+        <option value="$PROJECT_DIR$/includes/View.php" />
+        <option value="$PROJECT_DIR$/includes/Http.php" />
+        <option value="$PROJECT_DIR$/includes/Input.php" />
+        <option value="$PROJECT_DIR$/config.php" />
+        <option value="$PROJECT_DIR$/includes/Cookie.php" />
+        <option value="$PROJECT_DIR$/includes/Request.php" />
+        <option value="$PROJECT_DIR$/includes/Session.php" />
+        <option value="$PROJECT_DIR$/includes/Redirect.php" />
+        <option value="$PROJECT_DIR$/includes/Misc.php" />
+        <option value="$PROJECT_DIR$/includes/Response.php" />
+        <option value="$PROJECT_DIR$/codeme_start.php" />
+        <option value="$PROJECT_DIR$/lib.php" />
+        <option value="$PROJECT_DIR$/application/views/page_not_found.php" />
+        <option value="$PROJECT_DIR$/application/views/alert.php" />
+        <option value="$PROJECT_DIR$/includes/Alert.php" />
+        <option value="$PROJECT_DIR$/includes/Uri.php" />
+        <option value="$PROJECT_DIR$/includes/File.php" />
+        <option value="$PROJECT_DIR$/includes/Controller.php" />
+        <option value="$PROJECT_DIR$/includes/Cache.php" />
+        <option value="$PROJECT_DIR$/application/controllers/welcome.php" />
+        <option value="$PROJECT_DIR$/includes/Validation.php" />
+        <option value="$PROJECT_DIR$/includes/Route.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/includes/Validator.php" />
+      </list>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectReloadState">
+    <option name="STATE" value="0" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="codeme" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="codeme" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="codeme" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="codeme" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="codeme" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="includes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="codeme" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="codeme" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="codeme" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="codeme" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="codeme" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="codeme" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="options.lastSelected" value="Errors" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FullScreen" value="false" />
+    <property name="LayoutCode.rearrangeEntriesPHP" value="false" />
+    <property name="SearchEverywhereHistory" value="" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\wamp\htdocs\project\2014\codeme\application\views" />
+      <recent name="D:\wamp\htdocs\project\2014\codeme\includes" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
+    <list size="0" />
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="030accbb-038c-435e-9350-3a3e7a9a4016" name="Default" comment="" />
+      <created>1408281464664</created>
+      <updated>1408281464664</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="0" selection-start="1061" selection-end="1061" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="952" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/welcome.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="0" selection-start="150" selection-end="150" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="408">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="11" selection-start="163" selection-end="163" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="391" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/codeme_start.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="29" selection-start="114" selection-end="114" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="493" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Route.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="0" selection-start="2908" selection-end="2908" vertical-scroll-proportion="0.0" vertical-offset="1590" max-vertical-offset="2176">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/View.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="203" selection-end="203" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="731" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="16" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Misc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="118" column="5" selection-start="2351" selection-end="2351" vertical-scroll-proportion="0.0" vertical-offset="2006" max-vertical-offset="3043" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Uri.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="25" selection-start="415" selection-end="415" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="612" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="0" selection-start="1061" selection-end="1061" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="952" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/welcome.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="8" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="408">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="19" selection-start="77" selection-end="77" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="578" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/codeme_start.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="29" selection-start="114" selection-end="114" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="493" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Route.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="103" column="61" selection-start="2792" selection-end="2792" vertical-scroll-proportion="0.0" vertical-offset="1751" max-vertical-offset="2108">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="3" selection-start="201" selection-end="201" vertical-scroll-proportion="0.0" vertical-offset="111" max-vertical-offset="731">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Misc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="24" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.0" vertical-offset="1411" max-vertical-offset="1666" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Uri.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="25" selection-start="415" selection-end="415" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="612" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="0" selection-start="1061" selection-end="1061" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="952" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/welcome.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="30" selection-start="148" selection-end="148" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="391">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="19" selection-start="77" selection-end="77" vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="578" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/codeme_start.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="29" selection-start="114" selection-end="114" vertical-scroll-proportion="0.0" vertical-offset="136" max-vertical-offset="493" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Route.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="103" column="61" selection-start="2792" selection-end="2792" vertical-scroll-proportion="0.0" vertical-offset="1751" max-vertical-offset="2108">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4998" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/page_not_found.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="34" selection-start="98" selection-end="98" vertical-scroll-proportion="-3.9230769" vertical-offset="0" max-vertical-offset="374" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="259" selection-end="259" vertical-scroll-proportion="0.3771331" vertical-offset="0" max-vertical-offset="586" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Dir.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="1" selection-start="260" selection-end="260" vertical-scroll-proportion="0.49317408" vertical-offset="0" max-vertical-offset="586" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Input.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="0" selection-start="1591" selection-end="1591" vertical-scroll-proportion="2.5238907" vertical-offset="0" max-vertical-offset="1598" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/View.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="203" selection-end="203" vertical-scroll-proportion="0.042662118" vertical-offset="145" max-vertical-offset="731" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Cookie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="0" selection-start="385" selection-end="385" vertical-scroll-proportion="0.5802048" vertical-offset="0" max-vertical-offset="586" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Redirect.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="247" selection-end="247" vertical-scroll-proportion="0.5221843" vertical-offset="0" max-vertical-offset="586" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Session.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="0" selection-start="1862" selection-end="1862" vertical-scroll-proportion="0.7679181" vertical-offset="1182" max-vertical-offset="1768" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Response.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="1" selection-start="1270" selection-end="1270" vertical-scroll-proportion="0.9419795" vertical-offset="451" max-vertical-offset="1139" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Misc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="6" selection-end="6" vertical-scroll-proportion="0.029010238" vertical-offset="0" max-vertical-offset="586" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="635" selection-end="635" vertical-scroll-proportion="-10.769231" vertical-offset="196" max-vertical-offset="782" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="311" selection-end="311" vertical-scroll-proportion="0.609215" vertical-offset="0" max-vertical-offset="586" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/page_not_found.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="22" selection-start="3956" selection-end="3956" vertical-scroll-proportion="-14.846154" vertical-offset="753" max-vertical-offset="1326" />
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/_superglobals.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="0" selection-start="1976" selection-end="1993" vertical-scroll-proportion="0.34812286" vertical-offset="901" max-vertical-offset="3944">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/codeme_start.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="117" selection-end="117" vertical-scroll-proportion="0.26109216" vertical-offset="0" max-vertical-offset="586" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Alert.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="14" selection-start="150" selection-end="150" vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="357" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Uri.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="24" selection-start="44" selection-end="44" vertical-scroll-proportion="0.1450512" vertical-offset="0" max-vertical-offset="612" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="9" selection-start="351" selection-end="351" vertical-scroll-proportion="-9.192307" vertical-offset="16" max-vertical-offset="833" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Http.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="10" selection-start="13" selection-end="17" vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="1513" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/File.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="20" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="2890">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Cache.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="22" selection-start="700" selection-end="700" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="1360">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/alert.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="25" selection-start="3959" selection-end="3959" vertical-scroll-proportion="0.67364746" vertical-offset="753" max-vertical-offset="1326" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/welcome.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="5" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="697">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Route.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="13" selection-start="1964" selection-end="1964" vertical-scroll-proportion="0.0" vertical-offset="1360" max-vertical-offset="2703">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Request.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="0" selection-start="1880" selection-end="1880" vertical-scroll-proportion="2.6979523" vertical-offset="0" max-vertical-offset="1717" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/Validator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="63" selection-end="63" vertical-scroll-proportion="-3.5384614" vertical-offset="10" max-vertical-offset="1921">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="3" selection-start="60" selection-end="151" vertical-scroll-proportion="0.042662118" vertical-offset="77" max-vertical-offset="663">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
+
