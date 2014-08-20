@@ -30,17 +30,17 @@ class Database
 
                     break;
 
-                case "mysql":
-
-                    $conn = mysql_connect($db['dbhost'], $db['dbuser'], $db['dbpassword']);
-
-                    mysql_select_db($db['dbname']);
-
-                    self::$dbConnect = $conn;
-
-                    self::$hasConnected = 'yes';
-
-                    break;
+//                case "mysql":
+//
+//                    $conn = mysql_connect($db['dbhost'], $db['dbuser'], $db['dbpassword']);
+//
+//                    mysql_select_db($db['dbname']);
+//
+//                    self::$dbConnect = $conn;
+//
+//                    self::$hasConnected = 'yes';
+//
+//                    break;
 
 
             }
@@ -52,7 +52,7 @@ class Database
     {
         switch (self::$dbType) {
             case "mysqli":
-                
+
                 $queryDB = self::$dbConnect->query($queryStr);
 
                 if (is_object($objectStr)) {
@@ -62,30 +62,94 @@ class Database
                 return $queryDB;
 
                 break;
+
+            case "mysql":
+
+
+                break;
         }
 
     }
 
     public function fetch_assoc($queryDB, $objectStr = '')
     {
-        $row = $queryDB->fetch_assoc();
+        switch (self::$dbType) {
+            case "mysqli":
 
-        if (is_object($objectStr)) {
-            $objectStr($row);
+                $row = $queryDB->fetch_assoc();
+
+                if (is_object($objectStr)) {
+                    $objectStr($row);
+                }
+
+                return $row;
+
+                break;
+
+
         }
 
-        return $row;
     }
 
     public function num_rows($queryDB, $objectStr = '')
     {
-        $totalRows = $queryDB->num_rows;
+        switch (self::$dbType) {
+            case "mysqli":
 
-        if (is_object($objectStr)) {
-            $objectStr($totalRows);
+                $totalRows = $queryDB->num_rows;
+
+                if (is_object($objectStr)) {
+                    $objectStr($totalRows);
+                }
+
+                return $totalRows;
+
+                break;
+
         }
 
-        return $totalRows;
+    }
+
+    public function insert_id($objectStr = '')
+    {
+        switch (self::$dbType) {
+            case "mysqli":
+
+                $id = self::$dbConnect->insert_id;
+
+                if (is_object($objectStr)) {
+                    $objectStr($id);
+                }
+
+                return $id;
+
+                break;
+
+        }
+
+    }
+
+    public function hasError($objectStr = '')
+    {
+        switch (self::$dbType) {
+            case "mysqli":
+
+                $errorStr = self::$dbConnect->error;
+
+                if (isset($errorStr[5])) {
+                    if (is_object($objectStr)) {
+                        $objectStr($errorStr);
+                    }
+
+                    return $errorStr;
+                }
+
+                return false;
+
+
+                break;
+
+        }
     }
 
 

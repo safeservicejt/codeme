@@ -11,9 +11,9 @@ require('codeme_start.php');
  *
  */
 
-Database::connect();
-
-$query = Database::query("select * from users limit 0,1");
+//Database::connect();
+//
+//$query = Database::query("select * from users limit 0,1");
 
 //$row=Database::fetch_assoc($query,function($result){
 //    print_r($result);
