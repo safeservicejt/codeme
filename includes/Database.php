@@ -30,6 +30,18 @@ class Database
 
                     break;
 
+                case "mysql":
+
+                    $conn = mysql_connect($db['dbhost'], $db['dbuser'], $db['dbpassword']);
+
+                    mysql_select_db($db['dbname']);
+
+                    self::$dbConnect = $conn;
+
+                    self::$hasConnected = 'yes';
+
+                    break;
+
 
             }
         }
@@ -38,13 +50,20 @@ class Database
 
     public function query($queryStr = '', $objectStr = '')
     {
-        $queryDB = self::$dbConnect->query($queryStr);
+        switch (self::$dbType) {
+            case "mysqli":
+                
+                $queryDB = self::$dbConnect->query($queryStr);
 
-        if (is_object($objectStr)) {
-            $objectStr($queryDB);
+                if (is_object($objectStr)) {
+                    $objectStr($queryDB);
+                }
+
+                return $queryDB;
+
+                break;
         }
 
-        return $queryDB;
     }
 
     public function fetch_assoc($queryDB, $objectStr = '')
