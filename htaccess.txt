@@ -1,0 +1,21 @@
+php_flag zlib.output_compression On
+php_value zlib.output_compression_level 5
+<IfModule mod_deflate.c>
+<FilesMatch "\.(js|css|html|htm|php|txt)$">
+SetOutputFilter DEFLATE
+</FilesMatch>
+</IfModule>
+Options +FollowSymLinks
+ErrorDocument 404 index.php
+RewriteEngine on
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?load=$1 [L]
+
+<IfModule mod_expires.c>
+	ExpiresActive On
+	<FilesMatch "\.(ico|gif|jpe?g|png|svg|svgz|js|css|swf|ttf|otf|woff|eot)$">
+		ExpiresDefault "access plus 1 month"
+	</FilesMatch>
+</IfModule>
