@@ -2,7 +2,41 @@
 
 class String
 {
+    public function action($funcName='',$inputData=array())
+    {
+        if(!function_exists($funcName))
+        {
+            return false;
+        }
 
+        $inputData=array_map($funcName, $inputData);
+
+        return $inputData;
+    }
+    
+    public function get($keyName,$default='')
+    {
+        $keyName=is_null($keyName)?$default:$keyName;
+
+        $keyName=($keyName != '')?$keyName:$default;
+        
+        return $keyName;
+    }
+
+    public function encode($str)
+    {
+        $str=addslashes($str);
+
+        return $str;
+    }
+
+    public function decode($text)
+    {
+        $text=stripslashes($text);
+
+        return $text;
+    } 
+       
     public function trimLines($Str = '')
     {
         $parseStr = explode("\r\n", $Str);
@@ -13,7 +47,7 @@ class String
 
         for ($i = 0; $i < $totalLines; $i++) {
             if ($parseStr[$i] != '')
-                $strResult .= $parseStr[$i] . "\r\n";
+                $strResult .= trim($parseStr[$i]) . "\r\n";
         }
 
         return $strResult;
@@ -63,7 +97,7 @@ class String
 
     public function randText($len = 10)
     {
-        $str = 'abcdefghjk12345zhjk56789mnpqrzABCDEFGHIJKMNOPQRSTUstuvwxy6789mnpqrstuvwxyzhjk56789mnpqrzABCDEFGHIJKMNOPQRSTUstuvwxyzhjkmrstyz';
+        $str = 'abcdefghijkl0123456789mnopqrstuvwxyzhijklmnopqrs0123456789tuvwxyzABCDEFGHIJKLM0123456789NOPQRSTUVWXYZ01234567ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
         $str = substr(str_shuffle($str), 0, $len);
 

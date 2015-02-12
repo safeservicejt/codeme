@@ -5,7 +5,7 @@ class Validator
 
     public static $error = '';
 
-    public function make($varName = array())
+    public function make($varName = array(),$alert=array())
     {
         $totalVarName = count($varName);
 
@@ -20,9 +20,11 @@ class Validator
 
             if($keyValue=='VALIDATOR')
             {
-                self::$error='The request '.$keyName.' not exists.';
+                // self::$error='The request '.$keyName.' not exists.';
 
-                return false;
+                // return false;
+
+                continue;
             }
 
             if (preg_match('/required|min|max|email|number|alpha|word|slashes/i', $varName[$keyName])) {
@@ -46,13 +48,24 @@ class Validator
                             case 'min':
                                 $matchRight--;
 
-                                if (!isset($keyValue[$matchRight])) return false;
+                                if (!isset($keyValue[$matchRight]))
+                                {
+
+                                    self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
+
+                                    return false;
+                                } 
 
                                 break;
                             case 'max':
                                 $matchRight;
 
-                                if (isset($keyValue[$matchRight])) return false;
+                                if (isset($keyValue[$matchRight]))
+                                {
+                                    self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
+
+                                    return false;
+                                } 
 
                                 break;
 
@@ -63,23 +76,53 @@ class Validator
 
                         switch ($reqValue) {
                             case 'required':
-                                if (Request::has($keyName)==false) return false;
+                                if (Request::has($keyName)==false)
+                                {
+                                    self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
+
+                                    return false;                                    
+                                }
                                 break;
                             case 'email':
 
-                                if (!preg_match('/^.*?\@.*?\.\w+$/i', $keyValue)) return false;
+                                if (!preg_match('/^.*?\@.*?\.\w+$/i', $keyValue))
+                                {
+                                    self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
+
+                                    return false;
+                                } 
                                 break;
                             case 'number':
-                                if (!preg_match('/^\d+$/', $keyValue)) return false;
+                                if (!preg_match('/^\d+$/', $keyValue))
+                                {
+                                    self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
+
+                                    return false;                                    
+                                }
                                 break;
                             case 'alpha':
-                                if (!preg_match('/^[a-zA-Z]+$/i', $keyValue)) return false;
+                                if (!preg_match('/^[a-zA-Z]+$/i', $keyValue))
+                                {
+                                    self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
+
+                                    return false;                                    
+                                }
                                 break;
                             case 'word':
-                                if (!preg_match('/^[a-zA-Z0-9_\@\!\#\$\%\^\&\*\(\)\.\|]+$/i', $keyValue)) return false;
+                                if (!preg_match('/^[a-zA-Z0-9_\@\!\#\$\%\^\&\*\(\)\.\|]+$/i', $keyValue))
+                                {
+                                    self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
+
+                                    return false;                                    
+                                }
                                 break;
                             case 'slashes':
-                                if (preg_match('/\'|\"/i', $keyValue)) return false;
+                                if (preg_match('/\'|\"/i', $keyValue))
+                                {
+                                    self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
+
+                                    return false;                                    
+                                }
                                 break;
 
 
@@ -100,7 +143,6 @@ class Validator
         }
 
         return true;
-
     }
     public function check($varName = array())
     {

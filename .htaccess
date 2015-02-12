@@ -1,7 +1,6 @@
-Options +FollowSymLinks
 ErrorDocument 404 index.php
 RewriteEngine on
-RewriteBase /project/2014/codeme/
+RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?load=$1 [L]

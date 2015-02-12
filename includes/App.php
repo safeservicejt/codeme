@@ -5,10 +5,21 @@ class App
 
 	private static $config=array(
 
-		'locale'=>'en'
+		'locale'=>LANGUAGE
 
 		);
 
+	function __construct()
+	{
+		$locale=LANGUAGE;
+
+		if(isset($_SESSION['locale']))
+		{
+			$locale=$_SESSION['locale'];
+		}
+
+		self::$config['locale']=$locale;
+	}
 
 	public function get($keyName)
 	{
@@ -38,6 +49,8 @@ class App
 		}
 
 		self::$config['locale']=$keyValue;
+
+		$_SESSION['locale']=$keyValue;
 	}
 
 

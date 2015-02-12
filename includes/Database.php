@@ -137,7 +137,7 @@ class Database
 
                 $queryDB = self::$dbConnect->query($queryStr);
 
-                echo self::$dbConnect->error;
+                // echo self::$dbConnect->error;
 
                 self::$error = self::$dbConnect->error;
 

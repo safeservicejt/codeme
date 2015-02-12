@@ -2,7 +2,6 @@
 
 // Database::connect();
 
-
 Route::get('', 'welcome');
 
 ?>

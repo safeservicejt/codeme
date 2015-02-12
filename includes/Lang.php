@@ -5,6 +5,8 @@ class Lang
 
 	private static $lang=array();
 
+	public static $data=array();
+
 	private static $totalRow=0;
 
 	public function get($keyName,$addOns=array())
@@ -20,6 +22,8 @@ class Lang
 
 		$fieldName='';
 
+		$childName='';
+
 		$langPath=LANG_PATH.$dirName.'/';
 
 		$loadData=self::parseName($keyName);
@@ -28,44 +32,49 @@ class Lang
 
 		$fieldName=$loadData['fieldName'];
 
-
-
-		$langPath=$langPath.$fileName.'.php';
-
-		if(!file_exists($langPath))
+		if(isset($loadData['childName']))
 		{
-			Alert::make('Language '.ucfirst($fileName).' not exists in system.');
-
-			return false;
+			$childName=$loadData['childName'];
 		}
 
-
-		if((int)self::$totalRow == 0)
+		if(!isset(self::$data[$fileName]))
 		{
-			include($langPath);		
-				
-			// return self::$lang;
-		}
+			$langPath=$langPath.$fileName.'.php';
 
-		if(!isset($lang) || !isset($lang[$fieldName]))
-		{
-			Alert::make('The field '.ucfirst($fieldName).' not exists inside language '.ucfirst($fileName));
-
-			return false;			
-		}
-
-		$totalAddons=count($addOns);
-
-		if($totalAddons > 0)
-		{
-			$keyNames=array_keys($addOns);
-
-			for($i=0;$i<$totalAddons;$i++)
+			if(!file_exists($langPath))
 			{
-				$keyName=$keyNames[$i];
+				Alert::make('Language '.ucfirst($fileName).' not exists in system.');
 
-				$lang[$keyName]=$addOns[$keyName];
+				return false;
 			}
+
+
+			if((int)self::$totalRow == 0)
+			{
+				include($langPath);		
+					
+				// return self::$lang;
+			}
+
+			if(!isset($lang))
+			{
+				Alert::make('The language '.ucfirst($lang).' not exists inside system.');
+
+				return false;			
+			}		
+
+			if(isset($fieldName[1]) && !isset($lang[$fieldName]))
+			{
+				Alert::make('The field '.ucfirst($fieldName).' not exists inside language '.ucfirst($fileName));
+
+				return false;			
+			}		
+
+			self::$data[$fileName]=$lang;	
+		}
+		else
+		{
+			$lang=self::$data[$fileName];
 		}
 
 		self::$totalRow=count($lang);
@@ -75,8 +84,44 @@ class Lang
 			return $lang;
 		}
 
-		return $lang[$fieldName];
+		$totalAddons=count($addOns);
 
+		if($totalAddons > 0 && !is_array($lang[$fieldName]))
+		{
+			$keyNames=array_keys($addOns);
+
+			for($i=0;$i<$totalAddons;$i++)
+			{
+				// $keyName=$keyNames[$i];
+
+				$keyNames[$i]=':'.$keyNames[$i];
+
+				// $lang[$keyName]=$addOns[$keyName];
+			}
+
+			$lang[$fieldName]=str_replace(array_keys($addOns), array_values($addOns), $lang[$fieldName]);
+		}
+
+		$theText=isset($childName[1])?$lang[$fieldName][$childName]:$lang[$fieldName];
+
+		return $theText;
+
+	}
+
+	public function loadLang($lang)
+	{
+		if($matches=Uri::match('^language\/([a-zA-Z]+)$'))
+		{
+			$lang=strtolower(trim($matches[1]));
+
+			$_SESSION['locale']=$lang;
+
+			Redirect::to(ROOT_URL);
+		}
+
+		$lang=isset($_SESSION['locale'])?$_SESSION['locale']:$lang;
+
+		App::setLocale($lang);
 	}
 
 	public function has($keyName)
@@ -160,6 +205,8 @@ class Lang
 
 		$fieldName='';
 
+		$childName='';
+
 		if(!preg_match('/(.*?)\.(\w+)/i', $keyName,$matches))
 		{
 			$fileName=$keyName;
@@ -169,6 +216,10 @@ class Lang
 		}
 		else
 		{
+			if(preg_match('/(\w+)\@(\w+)/i', $keyName,$matchChild))
+			{
+				$childName=$matchChild[2];
+			}
 
 			$fileName=$matches[1];
 
@@ -177,7 +228,9 @@ class Lang
 
 		$resultData['fileName']=$fileName;
 
-		$resultData['fieldName']=$fieldName;				
+		$resultData['fieldName']=$fieldName;	
+
+		$resultData['childName']=$childName;			
 
 		return $resultData;
 

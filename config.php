@@ -19,15 +19,17 @@ define("VIEWS_PATH", APP_PATH . 'views/');
 
 define("CACHES_PATH", APP_PATH . 'caches/');
 
-define("LANG_PATH", APP_PATH . 'lang/');
-
 define("CONTROLLERS_URL", APP_URL . 'controllers/');
 
 define("MODELS_URL", APP_URL . 'models/');
 
 define("VIEWS_URL", APP_URL . 'views/');
 
+define("LANGUAGE", 'en');
+
 define("LANG_URL", APP_URL . 'lang/');
+
+define("LANG_PATH", APP_PATH . 'lang/');
 
 define("INCLUDES_PATH", ROOT_PATH . 'includes/');
 
@@ -50,7 +52,7 @@ $db['default'] = array(
 
     "dbpassword" => "",
 
-    "dbname" => "2014_codeme_test"
+    "dbname" => "2014_project_codeme"
 
 );
 

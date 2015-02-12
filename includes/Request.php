@@ -21,6 +21,63 @@ class Request
 
     }
 
+    public function isPost($reqKey)
+    {
+        if(!isset($reqKey[0]))
+        {
+            return false;
+        }
+        
+        if(!isset($_POST[$reqKey]))
+        {
+            return false;
+        }
+
+        return true;
+    }
+    public function isGet($reqKey)
+    {
+        if(!isset($reqKey[0]))
+        {
+            return false;
+        }
+
+        if(!isset($_GET[$reqKey]))
+        {
+            return false;
+        }
+
+        return true;
+    }
+    public function isFile($reqKey)
+    {
+        if(!isset($reqKey[0]))
+        {
+            return false;
+        }
+
+        if(!isset($_FILES[$reqKey]['tmp_name']))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function make($reqName = '', $reqValue = '')
+    {
+        if (!preg_match('/(\w+)\.(\w+)/i', $reqName, $matchesName)) {
+
+            $_REQUEST[$reqName]=$reqValue;
+
+        } else {
+            $reqName = $matchesName[1];
+            $postion = $matchesName[2];
+
+            $_REQUEST[$reqName][$postion]=$reqValue;
+        }
+    }
+
     public function has($reqName = '')
     {
         if (!preg_match('/(\w+)\.(\w+)/i', $reqName, $matchesName)) {
@@ -40,6 +97,7 @@ class Request
         }
 
     }
+
 
     public function all()
     {
