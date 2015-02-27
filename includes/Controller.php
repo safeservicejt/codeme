@@ -2,6 +2,26 @@
 
 class Controller
 {
+    public static $loadPath = '';
+    
+    public function setPath($path)
+    {
+        $path=!isset($path[2])?CONTROLLERS_PATH:$path;
+
+        self::$loadPath=$path;
+    }
+
+    public function getPath()
+    {
+        $path=!isset(self::$loadPath[2])?CONTROLLERS_PATH:self::$loadPath;
+
+        self::$loadPath=$path;
+
+        return $path;
+    }
+    
+
+
     public function load($controlName = '', $funcName = 'index')
     {  
         // $funcOfController = '';
@@ -14,7 +34,8 @@ class Controller
             $funcName = $matchesName[2];
         }
 
-        $path = CONTROLLERS_PATH . $controlName . '.php';
+        // $path = CONTROLLERS_PATH . $controlName . '.php';
+        $path = self::getPath() . $controlName . '.php';
 
 
         if (!file_exists($path)) Alert::make('Controller <b>'.$controlName.'</b> not exists.');

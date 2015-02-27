@@ -3,6 +3,8 @@
 static $root_path = 'D:\wamp\htdocs\project\2014\codeme/';
 static $root_url = 'http://test.vn/project/2014/codeme/';
 
+define("ENCRYPT_SECRET_KEY", "*&^@#&)@#)(*)(@#");
+
 define("ROOT_PATH", $root_path);
 
 define("ROOT_URL", $root_url);
@@ -74,6 +76,16 @@ $db['testdb'] = array(
     "dbuser" => "root",
 
     "dbpassword" => "",
+
+    "dbname" => "2014_testdb"
+
+);
+
+$db['mongodb'] = array(
+
+    "dbtype" => "mongodb",
+
+    "dbhost" => "mongodb://localhost:27017,localhost:27017",
 
     "dbname" => "2014_testdb"
 

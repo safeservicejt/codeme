@@ -23,6 +23,29 @@ class String
         return $keyName;
     }
 
+    public function encrypt($pure_string) {
+        
+    $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
+    $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+    $encrypted_string = mcrypt_encrypt(MCRYPT_BLOWFISH, ENCRYPT_SECRET_KEY, utf8_encode($pure_string), MCRYPT_MODE_ECB, $iv);
+
+    $encrypted_string=base64_encode($encrypted_string);
+
+    return $encrypted_string;   
+    }
+
+    public function decrypt($encrypted_string) {
+
+    $encrypted_string=base64_decode($encrypted_string);
+
+    $iv_size = mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_ECB);
+    $iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
+    $decrypted_string = mcrypt_decrypt(MCRYPT_BLOWFISH, ENCRYPT_SECRET_KEY, $encrypted_string, MCRYPT_MODE_ECB, $iv);
+    return $decrypted_string;
+
+    }
+
+
     public function encode($str)
     {
         $str=addslashes($str);

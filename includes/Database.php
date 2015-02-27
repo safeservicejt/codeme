@@ -129,6 +129,33 @@ class Database
 
     }
 
+ 
+    public function close($dbsortName = 'default')
+    {
+        global $db;
+
+        if (!is_array($db[$dbsortName])) return false;
+
+        self::$dbinfo = $db[$dbsortName];
+
+        self::$dbType = $db[$dbsortName]['dbtype'];
+
+        switch ($db[$dbsortName]['dbtype']) {
+
+            case "mysqli":
+
+                if(mysqli_close(self::$dbConnect))
+                {
+                    return true;
+                }
+
+                return false;
+                break;
+        }
+
+    }
+
+
 
     public function query($queryStr = '', $objectStr = '')
     {
@@ -179,6 +206,28 @@ class Database
 
             case "mysql":
 
+
+                break;
+        }
+
+    }
+
+    public function nonQuery($queryStr = '', $objectStr = '')
+    {
+        switch (self::$dbType) {
+            case "mysqli":
+
+                $queryDB = self::$dbConnect->send_query($queryStr);
+
+                // echo self::$dbConnect->error;
+
+                self::$error = self::$dbConnect->error;
+
+                if (is_object($objectStr)) {
+                    $objectStr($queryDB);
+                }
+
+                return $queryDB;
 
                 break;
         }

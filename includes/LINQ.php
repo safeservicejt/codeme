@@ -171,6 +171,15 @@ class LINQ
 		return $loadData;
 	}
 
+	public function all()
+	{
+		$field=isset($this->query['fields'][2])?$this->query['fields']:'*';
+		// $this->query['fields']=" count($fieldName)as totalRow ";
+		$loadData=$this->excuteQuery();
+
+		return $loadData;
+	}
+	
 	public function count($fieldName)
 	{
 		$fieldName=isset($fieldName[1])?$fieldName:'*';

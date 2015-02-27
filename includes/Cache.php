@@ -4,8 +4,27 @@ class Cache
 {
 
     private static $cacheStatus = 'disabled';
+
     private static $cacheLiveTime = 360;
 
+    public static $cachePath = '';
+
+    public function setPath($path)
+    {
+        $path=!isset($path[2])?CACHES_PATH:$path;
+
+        self::$cachePath=$path;
+    }
+
+    public function getPath()
+    {
+        $path=!isset(self::$cachePath[2])?CACHES_PATH:self::$cachePath;
+
+        self::$cachePath=$path;
+
+        return $path;
+    }
+  
     public function enable($liveTime = 360)
     {
         self::$cacheStatus = 'enable';
@@ -22,7 +41,8 @@ class Cache
 
         $url = trim($load);
 
-        $cachePath = CACHES_PATH . md5($url) . '.cache';
+        // $cachePath = CACHES_PATH . md5($url) . '.cache';
+        $cachePath = self::getPath() . md5($url) . '.cache';
 
         if (file_exists($cachePath)) {
 
@@ -57,7 +77,8 @@ class Cache
     // Default timeLive=1 day
     public function saveKey($keyName,$keyData='')
     {
-        $filePath=CACHES_PATH.$keyName.'.cache';
+        // $filePath=CACHES_PATH.$keyName.'.cache';
+        $filePath=self::getPath().$keyName.'.cache';
 
         $fp=fopen($filePath,'w');
 
@@ -68,7 +89,8 @@ class Cache
 
     public function loadKey($keyName,$timeLive=86400)
     {
-        $filePath=CACHES_PATH.$keyName.'.cache';
+        // $filePath=CACHES_PATH.$keyName.'.cache';
+        $filePath=self::getPath().$keyName.'.cache';
 
         if(!file_exists($filePath))return false;
 
@@ -84,7 +106,8 @@ class Cache
     }
     public function removeKey($keyName)
     {
-        $filePath=CACHES_PATH.$keyName.'.cache';
+        // $filePath=CACHES_PATH.$keyName.'.cache';
+        $filePath=self::getPath().$keyName.'.cache';
 
         if(!file_exists($filePath))return true;
 
@@ -102,7 +125,8 @@ class Cache
 
             $url = trim($load);
 
-            $savePath = CACHES_PATH . md5($url) . '.cache';
+            // $savePath = CACHES_PATH . md5($url) . '.cache';
+            $savePath = self::getPath() . md5($url) . '.cache';
 
             $viewsData = ob_get_contents();
 
