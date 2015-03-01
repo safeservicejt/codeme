@@ -30,20 +30,27 @@ Session::get(). Session::make();
 
 Response::json(). Response::download();
 
-Cache::enable();
+Cache::saveKey(). Cache::loadKey();
+
+Form::open(). Form::close();
+
+LINQ::table('users')->select(array('username','password'))->where('uid','>','3')->get();
 
 Redirect::to();
 
-Http::sendPostTo(). Http::sendGetTo(). Http::getDataUrl(). Http::copyDataUrl();
+Http::sendPostTo(). Http::sendGetTo(). Http::getDataUrl(). Http::copyDataUrl(); Http::get();
 
 Dir::create(). Dir::listFiles();
 
 File::exists(). File::create(). File::write(). File::writeoverride(). File::remove(). File::read(). File::readallline(). File::getcontenttype(). File::getmodifytime(). File::getcreatetime(). File::getextension(). File::getsize(). File::move(). File::copy(). File::rename(). File::name();
 
-Uri::getNext();
+Uri::getNext(); Uri::has(); Uri::match();
+
+
 
 Fileupload::isValid(). Fileupload::move(); Fileupload::getRealPath(). Fileupload::getClientOriginalName(). Fileupload:getSize(). Fileupload::getMimeType();
 
 Alert::make();
 
-String::trimLines(). String::clearSpace(). String::Split(). String::randNumber(). String::randAlpha(). String::randText();
+String::trimLines(). String::clearSpace(). String::Split(). String::randNumber(). String::randAlpha(). String::randText(); String::encode(); String::decode(); String::encrypt();
+
