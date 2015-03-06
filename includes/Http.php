@@ -2,6 +2,63 @@
 
 class Http
 {
+    public function get($inputData)
+    {
+        $inputData=strtolower($inputData);
+
+        $inputData=($inputData=='refer')?'referer':$inputData;
+        $inputData=($inputData=='ref')?'referer':$inputData;
+
+        $inputData=($inputData=='ua')?'useragent':$inputData;
+
+        $inputData=($inputData=='remoteadd')?'remoteip':$inputData;
+
+        $inputData=($inputData=='authpassword')?'authpass':$inputData;
+
+
+
+        $result='';
+
+        switch ($inputData) {
+            case 'referer':
+                $result=$_SERVER['HTTP_REFERER'];
+                break;
+            case 'useragent':
+                $result=$_SERVER['HTTP_USER_AGENT'];
+                break;
+            case 'host':
+                $result=$_SERVER['HTTP_HOST'];
+                break;
+            case 'referer':
+                $result=$_SERVER['HTTP_REFERER'];
+                break;
+            case 'remoteip':
+                $result=$_SERVER['REMOTE_ADDR'];
+                break;
+            case 'remotehost':
+                $result=$_SERVER['REMOTE_HOST'];
+                break;
+            case 'remoteport':
+                $result=$_SERVER['REMOTE_PORT'];
+                break;
+            case 'remoteuser':
+                $result=$_SERVER['REMOTE_USER'];
+                break;
+            case 'authuser':
+                $result=$_SERVER['PHP_AUTH_USER'];
+                break;
+            case 'authpass':
+                $result=$_SERVER['PHP_AUTH_PW'];
+                break;
+            case 'authtype':
+                $result=$_SERVER['AUTH_TYPE'];
+                break;
+            
+        }
+
+        return $result;
+    }
+
     public function sendPostTo($url = '', $post = array(), $cookiepath = '/.cookie_tmp.txt', $is_follow = 'no')
     {
         ob_flush();

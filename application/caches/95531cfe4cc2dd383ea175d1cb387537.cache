@@ -1,5 +1,3 @@
-{extends "login.php"}
-
 <strong>This is view of example call from Route. <?php echo $text;?>. Number is: <?php echo $a;?></strong>
 <p>
     <form action="" method="post" enctype="multipart/form-data">
@@ -13,9 +11,9 @@
     <p>
         <button type="submit" name="btnSend">Send</button>
     </p>
-{$text="34343"}
+<?php $text="34343";?>
 
-{$text}
+<?php echo $text;?>
 
     </form>
 

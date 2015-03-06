@@ -3,13 +3,13 @@
 class Compress
 {
 
-	public function gzip($inputData,$method='compress')
+	public function gzip($inputData,$method='compress',$level=9)
 	{
 		$resultData='';
 
 		switch ($method) {
 			case 'compress':
-				$resultData=gzcompress($inputData, 9);
+				$resultData=gzcompress($inputData, $level);
 				break;
 			case 'uncompress':
 				$resultData=gzuncompress($inputData);

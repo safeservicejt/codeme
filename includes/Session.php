@@ -49,7 +49,18 @@ class Session
 
     public function make($sessionName = '', $sessionValue = '')
     {
+        if(preg_match('/(\w+)\.(\w+)/i', $sessionName,$matches))
+        {   
+            $s1=$matches[1];
+
+            $s2=$matches[2];
+
+            $_SESSION[$s1][$s2] = $sessionValue;
+        }
+        else
+        {
             $_SESSION[$sessionName] = $sessionValue;
+        }
     }
 
     public function forget($sessionName = '')
