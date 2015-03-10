@@ -3,6 +3,7 @@
 class LINQ
 {
 // $rows=LINQ::table('users')->select(array('username','password'))->where('uid','>','3')->get();
+// $rows=LINQ::table('users')->select(array('username','password'))->addSelect('id')->where('uid','>','3')->get();
 // $rows=LINQ::table('users')->select(array('username','password'))->whereIn('uid',array(3,4))->get();
 // $rows=LINQ::table('users')->select(array('username','password'))->whereBetween('uid','14/08/1990|14/08/2014')->get();
 // $rows=LINQ::table('users')->select(array('username','password'))->whereNotBetween('uid','14/08/1990|14/08/2014')->get();
@@ -10,27 +11,52 @@ class LINQ
 // $rows=LINQ::table('users')->select(array('username','password'))->where('uid','>','3')->andWhere('uid','>','4')->get();
 // $rows=LINQ::table('users')->select(array('username','password'))->where('uid','>','3')->andWhere('uid','>','4')->orWhere('uid','>','4')->get();
 // $rows=LINQ::table('users')->select(array('username','password'))->whereNotIn('uid',array(3,4))->get();
+
+// $rows=LINQ::table('users')->leftJoin('contacts', 'users.id', '=', 'contacts.user_id')->get();
+
 // $rows=LINQ::table('users')->with('categories','catid','catid')->with('pages','prodid','prodid')->get();
+
+//	$rows=LINQ::table('users')->with('categories','catid','catid')->having('SUM(Robots.price) > 1000')->get();
+
 // $rows=LINQ::table('users')->select(array('users.username as uname'))->with('categories','catid','catid')->with('pages','prodid','prodid')->get();
 // $rows=LINQ::table('users')->select(array('username','password'))->where('uid','>','3')->offset(1)->take(5)->get();
 
+// $rows=LINQ::table('users')->count('id')->get();
+// $rows=LINQ::table('users')->min('id')->get();
+// $rows=LINQ::table('users')->max('id')->get();
+
+// $rows=LINQ::table('users')->numRows();
+
 // Update data
 // $rows=LINQ::table('users')->where('uid','>','3')->update(array(
-// 	'data'=>array(
 // 		'password'=>'minhtien'
-// 		)
-// 	));
+// 		));
 
 // Delete data
 // $rows=LINQ::table('users')->where('uid','>','3')->delete();
 
 // Insert data
 // LINQ::table('users')->insert(array(
-// 	'data'=>array(
 // 		'username'=>'15y5y5yh54y45',
 // 		'password'=>md5('minhtien')
-// 		)
-// 	));
+// 		));
+// $id=LINQ::table('users')->insertGetId(array(
+// 		'username'=>'15y5y5yh54y45',
+// 		'password'=>md5('minhtien')
+// 		));
+
+// LINQ::table('users')->insert(
+// 	array(
+// 	'email'=>'asdsd@gmail.com'
+// 	),
+// 	array(
+// 	'email'=>'asdsd@gmail.com'
+// 	),
+// 	array(
+// 	'email'=>'asdsd@gmail.com'
+// 	)
+
+// );
 
 	private static $query=array();
 
@@ -74,18 +100,34 @@ class LINQ
 		return $this;
 	}
 
+	public function addSelect($keyName)
+	{
+		array_push($this->query['fields'], $keyName);
+
+		return $this;
+	}
+
 	public function update($listFields=array())
 	{
 		$mainTable=self::$query['table'];
 
-		$total=count($listFields['data']);
+		if(isset($listFields['data']))
+		{
+			$tmp=$listFields['data'];
+
+			$listFields=array();
+
+			$listFields=$tmp;
+		}
+
+		$total=count($listFields);
 
 		if($total==0)
 		{
 			return false;
 		}
 
-		$keyNames=array_keys($listFields['data']);
+		$keyNames=array_keys($listFields);
 
 		$setUpdates='';
 
@@ -93,7 +135,7 @@ class LINQ
 		{
 
 			$keyName=$keyNames[$i];
-			$setUpdates.="$keyName='".$listFields['data'][$keyName]."', ";
+			$setUpdates.="$keyName='".$listFields[$keyName]."', ";
 		}
 
 		$setUpdates=substr($setUpdates,0,strlen($setUpdates)-2);
@@ -111,6 +153,7 @@ class LINQ
 
 		return false;
 	}
+
 	public function delete()
 	{
 		$mainTable=self::$query['table'];
@@ -129,33 +172,86 @@ class LINQ
 		return false;
 	}
 
+	public function insertGetId($listFields=array())
+	{
+		$this->query['getID']='yes';
+
+		$loadData=$this->insert($listFields);
+
+		return $loadData;
+	}
+
 	public function insert($listFields=array())
 	{
 		$mainTable=self::$query['table'];
 
-		$total=count($listFields['data']);
+		$totalArgs=func_num_args();
+
+		if(isset($listFields['data']))
+		{
+			$tmp=$listFields['data'];
+
+			$listFields=array();
+
+			$listFields=$tmp;
+		}
+
+		$total=count($listFields);
 
 		if($total==0)
 		{
 			return false;
 		}
 
-		$keyNames=array_keys($listFields['data']);
 
-		$insertKeys=implode(',', $keyNames);
+		$addMultiAgrs='';
 
-		$keyValues=array_values($listFields['data']);
+		if($totalArgs > 1)
+		{
+		    foreach (func_get_args() as $listFields) {
+		       
+				$keyNames=array_keys($listFields);
 
-		$insertValues="'".implode("','", $keyValues)."'";
+				$insertKeys=implode(',', $keyNames);
+
+				$keyValues=array_values($listFields);
+
+				$insertValues="'".implode("','", $keyValues)."'";
+
+				$addMultiAgrs.="($insertValues), ";
+
+		    }
+
+		    $addMultiAgrs=substr($addMultiAgrs, 0,strlen($addMultiAgrs)-2);
+		}
+		else
+		{
+			$keyNames=array_keys($listFields);
+
+			$insertKeys=implode(',', $keyNames);
+
+			$keyValues=array_values($listFields);
+
+			$insertValues="'".implode("','", $keyValues)."'";	
+
+			$addMultiAgrs="($insertValues)";	
+		}
 
 		// $whereQuery=$this->parseWhere();
 
-		$resultData="insert into $mainTable($insertKeys) values($insertValues)";
+		$resultData="insert into $mainTable($insertKeys) values".$addMultiAgrs;
 
 		Database::query($resultData);
 
 		if(!$error=Database::hasError())
 		{
+			if(isset($this->query['getID']))
+			{
+				$id=Database::insert_id();
+
+				return $id;
+			}
+
 			return true;
 		}		
 
@@ -170,6 +266,14 @@ class LINQ
 
 		return $loadData;
 	}
+	public function numRows()
+	{
+		$this->query['numRows']='yes';
+
+		$loadData=$this->excuteQuery();
+
+		return $loadData;
+	}
 
 	public function all()
 	{
@@ -179,8 +283,10 @@ class LINQ
 
 		return $loadData;
 	}
+
+
 	
-	public function count($fieldName)
+	public function count($fieldName='*')
 	{
 		$fieldName=isset($fieldName[1])?$fieldName:'*';
 
@@ -237,10 +343,30 @@ class LINQ
 
 		return $this;
 	}
+	public function having($keyName)
+	{
+		$this->query['having']=$keyName;
+
+		return $this;
+	}
+
+	public function distinct()
+	{
+		$this->query['distinct']="yes";
+
+		return $this;
+	}
 	
 	public function groupBy($keyName)
 	{
 		$this->query['groupby']="group by $keyName";
+
+		return $this;
+	}
+
+	public function leftJoin($table2='users2',$keyName1='users2.id',$conditionName='=',$keyName2='users1.nodeid')
+	{
+		$this->query['leftJoin']=" LEFT JOIN $table2 ON $keyName1 $conditionName $keyName2";
 
 		return $this;
 	}
@@ -265,6 +391,7 @@ class LINQ
 
 		return $loadData;
 	}
+
 	public function orWhere($fieldName,$conditionName,$conditionValue)
 	{
 		$loadData=$this->setWhere('OR',$fieldName,$conditionName,$conditionValue);
@@ -358,7 +485,17 @@ class LINQ
 
 		$query=Database::query($queryStr);
 
+		if(isset(Database::$error[5]))
+		{
+			return false;
+		}
+
 		$total=Database::num_rows($query);
+
+		if(isset($this->query['numRows']))
+		{
+			return $total;
+		}
 
 		if((int)$total==0)
 		{
@@ -438,8 +575,17 @@ class LINQ
 
 		if(isset($this->query['fields']))
 		{
+			$total=count($this->query['fields']);
+
+			if($total > 1)
 			$listFields=implode(',', $this->query['fields']);
 		}
+
+		if(!is_array($this->query['fields']) && isset($this->query['fields'][3]))
+		{
+			$listFields=$this->query['fields'];
+		}
+
 
 		return $listFields;
 	}
@@ -487,6 +633,12 @@ class LINQ
 
 		$groupBy=isset($this->query['groupby'])?$this->query['groupby']:'';
 
+		$distinct=isset($this->query['distinct'])?'distinct':'';
+
+		$having=isset($this->query['having'])?$this->query['having']:'';
+
+		$leftJoin=isset($this->query['leftJoin'])?$this->query['leftJoin']:'';
+
 		$limitFrom=isset($this->query['limit']['offset'])?$this->query['limit']['offset']:0;
 
 		$limitTotal=isset($this->query['limit']['take'])?$this->query['limit']['take']:0;
@@ -495,7 +647,7 @@ class LINQ
 
 		$whereQuery=$this->parseWhere();
 
-		$resultQuery="select $listFields from $tableName $whereQuery $groupBy $orderBy";
+		$resultQuery="select $distinct $listFields from $tableName $leftJoin $whereQuery $having $groupBy $orderBy";
 
 		$resultQuery=isset($this->query['query'])?$this->query['query']:$resultQuery;
 

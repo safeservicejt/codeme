@@ -2,7 +2,17 @@
 
 class Security
 {
-    public function allowIP($ipStr = '')
+    public function allowOnlyIP($ipStr = '')
+    {
+        $ipSource = $_SERVER['REMOTE_ADDR'];
+
+        $ipStr=trim($ipStr);
+
+        if ($ipSource == $ipStr)
+        Alert::make('Page not found');
+    }
+
+    public function blockIP($ipStr = '')
     {
         $ipSource = $_SERVER['REMOTE_ADDR'];
 
@@ -10,17 +20,31 @@ class Security
         Alert::make('Page not found');
     }
 
-    public function allowRefer($inputData)
+    public function blockRefer($inputData)
+    {
+        $refer=Http::get('refer');
+
+        $inputData=str_replace('/', '\/', $inputData);
+
+        if(preg_match('/'.$inputData.'/i', $refer))
+        {
+            Alert::make('Page not found');
+        }
+    }
+    
+    public function allowOnlyRefer($inputData)
     {
     	$refer=Http::get('refer');
 
     	$inputData=str_replace('/', '\/', $inputData);
 
-    	if(preg_match('/'.$inputData.'/i', $refer))
+    	if(!preg_match('/'.$inputData.'/i', $refer))
     	{
     		Alert::make('Page not found');
     	}
     }
+
+
 }
 
 ?>

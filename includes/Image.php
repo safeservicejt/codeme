@@ -2,6 +2,83 @@
 
 class Image
 {
+
+    public function upload($keyName='image',$shortPath='uploads/images/')
+    {
+        $name=$_FILES[$keyName]['name'];
+
+        if(!preg_match('/.*?\.(\w+)/i', $name,$match))
+        {
+            return false;
+        }
+
+        $newName=String::randNumber(10).'.'.$match[1];
+
+        $shortPath.=$newName;
+
+        $fullPath=ROOT_PATH.$shortPath;
+
+        move_uploaded_file($_FILES[$keyName]['tmp_name'], $fullPath);
+
+        return $shortPath;
+    }
+    public function uploadMultiple($keyName='image',$shortPath='uploads/images/')
+    {
+        $name=$_FILES[$keyName]['name'][0];
+
+        $resultData=array();
+
+        if(!preg_match('/.*?\.\w+/i', $name))
+        {
+            return false;
+        }
+
+        $total=count($_FILES[$keyName]['name']);
+
+        $tmpShortPath='';
+
+        for($i=0;$i<$total;$i++)
+        {
+            $tmpShortPath=$shortPath;
+
+            preg_match('/.*?\.(\w+)/i', $_FILES[$keyName]['name'][$i],$matchName);
+
+            $newName=String::randNumber(10).'.'.$matchName[1];
+
+            $tmpShortPath.=$newName;
+
+            $resultData[$i]=$tmpShortPath;
+
+            $fullPath=ROOT_PATH.$tmpShortPath;
+
+            move_uploaded_file($_FILES[$keyName]['tmp_name'][$i], $fullPath);
+        }
+
+        return $resultData;
+    }
+
+    public function uploadFromUrl($imgUrl,$shortPath='uploads/images/')
+    {
+        $imgUrl=trim($imgUrl);
+
+        if(!preg_match('/http.*?\.(\w+)/i', $imgUrl,$match))
+        {
+            return false;
+        }
+
+        $newName=String::randNumber(10).'.'.$match[1];
+
+        $shortPath.=$newName;
+
+        $fullPath=ROOT_PATH.$shortPath;
+
+        $imgData=Http::getDataUrl($imgUrl);
+
+        File::create($fullPath,$imgData);
+
+        return $shortPath;
+    }
+
     public function getsize($imagePath)
     {
         list($width, $height) = getimagesize($imagePath);

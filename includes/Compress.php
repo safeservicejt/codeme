@@ -19,5 +19,7 @@ class Compress
 
 		return $resultData;
 	}
+
+	
 }
 ?>

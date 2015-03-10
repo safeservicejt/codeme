@@ -20,6 +20,29 @@ class Request
         return $result;
 
     }
+    
+    public function getPost($reqName = '', $reqValue = '')
+    {
+        if(!isset($reqName[1]))
+        {
+            return $_POST;
+        }
+
+        $result = '';
+
+        if (!preg_match('/(\w+)\.(\w+)/i', $reqName, $matchesName)) {
+            $result = isset($_POST[$reqName]) ? $_POST[$reqName] : $reqValue;
+
+        } else {
+            $reqName = $matchesName[1];
+            $postion = $matchesName[2];
+
+            $result = isset($_POST[$reqName][$postion]) ? $_POST[$reqName][$postion] : $reqValue;
+        }
+
+        return $result;
+
+    }
 
     public function isPost($reqKey)
     {
