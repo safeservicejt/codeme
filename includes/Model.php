@@ -27,7 +27,8 @@ class Model
         // $path = MODELS_PATH . $modelName . '.php';
         $path = self::getPath() . $modelName . '.php';
 
-        if (!file_exists($path)) Alert::make('Model <b>' . $modelName . '</b> not exists.');
+        if (!file_exists($path))
+        Log::warning('Model <b>' . $modelName . '</b> not exists.');
 
         include($path);
     }

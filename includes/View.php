@@ -32,12 +32,7 @@ class View
 
         if (!file_exists($path)) {
 
-            ob_end_clean();
-
-            // include(VIEWS_PATH . 'page_not_found.php');
-            include(self::getPath() . 'page_not_found.php');
-
-            die();
+            Log::warning("View $viewName not exists!");
         }
 
         $total_data = count($viewData);

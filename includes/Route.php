@@ -10,13 +10,14 @@ class Route
     {
         $varObject = '';
 
-        if(!isset($controllerName[1]))
-        {
-            // Alert::make('Page not found');
 
-            return false;
-        }
 
+        // if(!isset($controllerName[1]))
+        // {
+        //     // Alert::make('Page not found');
+
+        //     return false;
+        // }
 
         if (is_object($controllerName)) {
 
@@ -24,8 +25,11 @@ class Route
 
             $controllerName = '';
 
+            $varObject();
+
             die();
         }  
+
 
         $subFunc='index';
 
@@ -40,8 +44,6 @@ class Route
 
             if(isset($_GET['load']) && !preg_match('/'.$routeName.'/i', $_GET['load']))
             {
-                // Alert::make('Page not found');
-
                 return false;
             }
   

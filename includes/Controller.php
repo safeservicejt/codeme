@@ -38,7 +38,8 @@ class Controller
         $path = self::getPath() . $controlName . '.php';
 
 
-        if (!file_exists($path)) Alert::make('Controller <b>'.$controlName.'</b> not exists.');
+        if (!file_exists($path))
+        Log::warning('Controller <b>'.$controlName.'</b> not exists.');
 
         include($path);
 
@@ -53,7 +54,8 @@ class Controller
 
         $funcName=($funcName=='index')?$funcName:'get'.ucfirst($funcName);
 
-        if (!method_exists($load, $funcName)) Alert::make('Function <b>'.$funcName.'</b> not exists inside controller <b>'.$controlName.'</b> .');
+        if (!method_exists($load, $funcName)) 
+        Log::warning('Function <b>'.$funcName.'</b> not exists inside controller <b>'.$controlName.'</b> .');
 
         $load->$funcName();
 

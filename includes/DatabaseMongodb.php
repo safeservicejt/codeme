@@ -12,15 +12,15 @@ class DatabaseMongodb
 
     private static $runQuery = 'no';
 
-    public function connect()
+    public function connect($keyName='default')
     {
         global $db;
 
-        self::$protocol = $db['protocol'];
+        self::$protocol = $db[$keyName]['dbtype'];
 
-        $conn = new MongoClient($db['dbhost']);
+        $conn = new MongoClient($db[$keyName]['dbhost']);
 
-        $db_name=$db['dbname'];
+        $db_name=$db[$keyName]['dbname'];
 
         self::$dbConnect = $conn->$db_name;        
 

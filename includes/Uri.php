@@ -72,6 +72,7 @@ class Uri
         if(!preg_match('/'.$uriName.'/i', $_GET['load'],$matches))
         {
             Alert::make('Page not found');
+
         }
 
     }
@@ -107,7 +108,7 @@ class Uri
 
         $total++;
 
-        if (isset($total)) load_page_not_found();
+        if (isset($total)) Alert::make('Page not found');
     }
 
     public function onlyWord()
@@ -119,7 +120,7 @@ class Uri
 
         if (preg_match('/[\<\>\$]/i', $uri))
         {
-            load_page_not_found();
+           Alert::make('Page not found');
         }
 
     }

@@ -148,37 +148,24 @@ function mainClassess($className) {
     }
     
 }
-// function extendsClassess($className) {
-//     if(file_exists(INCLUDES_PATH .'ac/' . $className . '.php'))
-//     {
-//         require INCLUDES_PATH .'ac/'. $className . '.php';       
-//     }
-   
-// }
 
 spl_autoload_register('mainClassess');
-// spl_autoload_register('extendsClassess');
 
-// function __autoload($className)
-// {
-//     if (file_exists(INCLUDES_PATH . $className . '.php')) {
+// set_error_handler('codemeErrorHandler');
 
-//         require INCLUDES_PATH . $className . '.php';     
+register_shutdown_function('codemeFatalErrorShutdownHandler');
 
-//         return true;
-//     }
+function codemeErrorHandler($code, $message, $file, $line) {
 
-//     return false;
-// }
-
-function load_page_not_found()
-{
-    ob_end_clean();
-
-    View::make('page_not_found');
-
-    die();
-
+    Log::report($code, $message, $file, $line);
 }
 
+function codemeFatalErrorShutdownHandler()
+{
+  $last_error = error_get_last();
+  if ($last_error['type'] === E_ERROR) {
+    // fatal error
+    codemeErrorHandler(E_ERROR, $last_error['message'], $last_error['file'], $last_error['line']);
+  }
+}
 ?>

@@ -43,7 +43,7 @@ class Lang
 
 			if(!file_exists($langPath))
 			{
-				Alert::make('Language '.ucfirst($fileName).' not exists in system.');
+				Log::warning('Language '.ucfirst($fileName).' not exists in system.');
 
 				return false;
 			}
@@ -58,14 +58,18 @@ class Lang
 
 			if(!isset($lang))
 			{
-				Alert::make('The language '.ucfirst($lang).' not exists inside system.');
+				// Alert::make('The language '.ucfirst($lang).' not exists inside system.');
+
+				Log::warning('The language '.ucfirst($lang).' not exists inside system.');
 
 				return false;			
 			}		
 
 			if(isset($fieldName[1]) && !isset($lang[$fieldName]))
 			{
-				Alert::make('The field '.ucfirst($fieldName).' not exists inside language '.ucfirst($fileName));
+				// Alert::make('The field '.ucfirst($fieldName).' not exists inside language '.ucfirst($fileName));
+
+				Log::warning('The field '.ucfirst($fieldName).' not exists inside language '.ucfirst($fileName));
 
 				return false;			
 			}		
