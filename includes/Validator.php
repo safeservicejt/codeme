@@ -5,6 +5,8 @@ class Validator
 
     public static $error = '';
 
+    public static $message='';
+
     public function make($varName = array(),$alert=array())
     {
         $totalVarName = count($varName);
@@ -53,6 +55,8 @@ class Validator
 
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
 
+                                    self::$message.='Request '.$keyName.' not reach min length is '.$matchRight.' | ';
+
                                     return false;
                                 } 
 
@@ -63,6 +67,8 @@ class Validator
                                 if (isset($keyValue[$matchRight]))
                                 {
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
+
+                                    self::$message.='Request '.$keyName.' reached max length is '.$matchRight.' | ';
 
                                     return false;
                                 } 
@@ -80,6 +86,8 @@ class Validator
                                 {
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
 
+                                    self::$message.='Request '.$keyName.' not exists | ';
+
                                     return false;                                    
                                 }
                                 break;
@@ -88,7 +96,7 @@ class Validator
                                 if (!preg_match('/^.*?\@.*?\.\w+$/i', $keyValue))
                                 {
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
-
+                                    self::$message.='Request '.$keyName.' not is email format | ';                                    
                                     return false;
                                 } 
                                 break;
@@ -96,7 +104,7 @@ class Validator
                                 if (!preg_match('/^\d+$/', $keyValue))
                                 {
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
-
+                                    self::$message.='Request '.$keyName.' not is number | ';
                                     return false;                                    
                                 }
                                 break;
@@ -104,7 +112,7 @@ class Validator
                                 if (!preg_match('/^[a-zA-Z]+$/i', $keyValue))
                                 {
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
-
+                                    self::$message.='Request '.$keyName.' not is alpha | ';
                                     return false;                                    
                                 }
                                 break;
@@ -112,7 +120,7 @@ class Validator
                                 if (!preg_match('/^[a-zA-Z0-9_\@\!\#\$\%\^\&\*\(\)\.\|]+$/i', $keyValue))
                                 {
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
-
+                                    self::$message.='Request '.$keyName.' not is word | ';
                                     return false;                                    
                                 }
                                 break;
@@ -120,7 +128,7 @@ class Validator
                                 if (preg_match('/\'|\"/i', $keyValue))
                                 {
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
-
+                                    self::$message.='Request '.$keyName.' lock by slashes | ';
                                     return false;                                    
                                 }
                                 break;

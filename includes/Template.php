@@ -66,6 +66,8 @@ class Template
     	}
 
     	$loadData=self::parseExtends($loadData);
+
+        $loadData=self::parseFriendlyFunction($loadData);
         
     	$replace=array(
     		'/\{include file="(.*?)"\}/i'=>'<?php Template::make($1);?>',
@@ -102,6 +104,9 @@ class Template
 
             '/\{\/loop\}/i'=>'<?php } ?>',
 
+            '/\{foreach (\w+) as (\w+)\}/i'=>'<?php foreach($$1 as $$2){ ?>',
+            '/\{endfor\}/i'=>'<?php } ?>',
+
             '/\(\{(\w+)\.(\w+)\}\)/i'=>'$$1["$2"]',
             '/\(\{(\w+)\.(\w+)\.(\w+)\}\)/i'=>'$$1["$2"]["$3"]',
             '/\(\{(\w+)\.(\w+)\.(\w+)\.(\w+)\}\)/i'=>'$$1["$2"]["$3"]["$4"]',
@@ -125,6 +130,86 @@ class Template
     	$resultPath=ROOT_PATH.'application/caches/templates/'.$fileMD5.'.php';
 
     	return $resultPath;
+    }
+
+    public function parseFriendlyFunction($loadData)
+    {
+         preg_match_all('/(\{(\w+|\w+\.\w+) | .*?\})/i', $loadData, $matches);
+
+         $total=count($matches[0]);
+
+         $replaces=array(
+            '/:\w+:\w+/i'=>'',
+            '/,\)/i'=>')'
+            );  
+
+         $replaceSource=array();
+
+         $replaceDesc=array();
+
+         for($i=0; $i < $total; $i++) { 
+
+            $keyName=trim(substr($matches[1][$i], 1,strlen($matches[1][$i])-1));
+
+            $i++;
+
+            $funcs=trim(substr($matches[1][$i], 0,strlen($matches[1][$i])-1));
+
+            $pattern='{'.$keyName.' | '.$funcs.'}';
+
+            $replaceSource[]=$pattern;
+
+            if(preg_match('/(\w+)\.(\w+)/', $keyName,$matchKeys))
+            {
+                $keyName='$'.$matchKeys[1].'["'.$matchKeys[2].'"]';
+            }
+            else
+            {
+                $keyName='$'.$keyName;
+            }
+
+            $parseFunc=explode('|', $funcs);
+
+            $totalFunc=count($parseFunc);
+
+            for($j=0;$j<$totalFunc;$j++)
+            {
+                $funcName=trim($parseFunc[$j]);
+
+                $addon='';
+
+                if(preg_match_all('/:(\w+)/i', $funcName, $matchAddons))
+                {
+                    if(!preg_match('/\w+::'.$matchAddons[1][0].'/i', $funcName))
+                    {
+                        $totalAddon=count($matchAddons[1]);
+
+                        for($u=0;$u<$totalAddon;$u++)
+                        {
+                            $addon.=$matchAddons[1][$u].', ';
+                            
+                        }
+                    }
+                    // print_r($matchAddons);
+                    // die();
+                    $addon=','.substr($addon, 0,strlen($addon)-2);
+                }
+
+                $keyName=$funcName.'('.$keyName.$addon.')';
+
+                
+            }
+
+            $keyName=preg_replace(array_keys($replaces), array_values($replaces), $keyName);
+
+            $replaceDesc[]=$keyName;
+
+         }
+
+         $loadData=str_replace($replaceSource, $replaceDesc, $loadData);
+
+         return $loadData;
+
     }
 
     public function parseExtends($loadData)

@@ -20,6 +20,24 @@ class Request
         return $result;
 
     }
+
+    public function forget($reqName = '', $reqValue = '')
+    {
+        $result = '';
+
+        if (!preg_match('/(\w+)\.(\w+)/i', $reqName, $matchesName)) {
+            unset($_REQUEST[$reqName]);
+
+        } else {
+            $reqName = $matchesName[1];
+            $postion = $matchesName[2];
+
+            unset($_REQUEST[$reqName][$postion]);
+        }
+
+        return $result;
+
+    }    
     
     public function getPost($reqName = '', $reqValue = '')
     {
