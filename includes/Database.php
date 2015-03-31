@@ -168,6 +168,11 @@ class Database
 
                 self::$error = self::$dbConnect->error;
 
+                if(isset(self::$error[5]))
+                {
+                    return false;
+                }
+
                 if (is_object($objectStr)) {
                     $objectStr($queryDB);
                 }
@@ -251,6 +256,10 @@ class Database
     {
         $totalRows=self::num_rows($query);
 
+        if(isset(self::$error[5]))
+        {
+            return false;
+        }
         
 
         $resultData=array();
@@ -268,6 +277,7 @@ class Database
     }
     public function fetch_array_all($queryDB, $objectStr = '', $fetchType = 'SQLSRV_FETCH_ASSOC')
     {
+        
         $totalRows=self::num_rows($query);
 
         $resultData=array();
@@ -288,6 +298,11 @@ class Database
     {
         switch (self::$dbType) {
             case "mysqli":
+
+                if(isset(self::$error[5]))
+                {
+                    return false;
+                }
 
                 $row = $queryDB->fetch_assoc();
 
