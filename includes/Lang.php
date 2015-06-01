@@ -9,6 +9,30 @@ class Lang
 
 	private static $totalRow=0;
 
+    public static $loadPath = '';
+
+    
+    public function setPath($path)
+    {
+        $path=!isset($path[2])?LANG_PATH:$path;
+
+        self::$loadPath=$path;
+    }
+
+    public function resetPath()
+    {
+        self::$loadPath=LANG_PATH;
+    }
+    
+    public function getPath()
+    {
+        $path=!isset(self::$loadPath[2])?LANG_PATH:self::$loadPath;
+
+        self::$loadPath=$path;
+
+        return $path;
+    }
+
 	public function get($keyName,$addOns=array())
 	{
 		if(!isset($keyName[1]))
@@ -24,7 +48,7 @@ class Lang
 
 		$childName='';
 
-		$langPath=LANG_PATH.$dirName.'/';
+		$langPath=self::getPath().$dirName.'/';
 
 		$loadData=self::parseName($keyName);
 

@@ -45,18 +45,11 @@ class LINQ
 // 		'password'=>md5('minhtien')
 // 		));
 
-// LINQ::table('users')->insert(
-// 	array(
-// 	'email'=>'asdsd@gmail.com'
-// 	),
-// 	array(
-// 	'email'=>'asdsd@gmail.com'
-// 	),
-// 	array(
-// 	'email'=>'asdsd@gmail.com'
-// 	)
-
-// );
+// LINQ::table('users')->insert(array(
+// 	$row[0]=>array(),
+// 	$row[1]=>array(),
+// 	$row[2]=>array()
+// 	));
 
 	private static $query=array();
 
@@ -185,36 +178,24 @@ class LINQ
 	{
 		$mainTable=self::$query['table'];
 
-		$totalArgs=func_num_args();
+		$totalArgs=count($listFields);
 
-		if(isset($listFields['data']))
-		{
-			$tmp=$listFields['data'];
-
-			$listFields=array();
-
-			$listFields=$tmp;
-		}
-
-		$total=count($listFields);
-
-		if($total==0)
+		if($totalArgs==0)
 		{
 			return false;
 		}
-
 
 		$addMultiAgrs='';
 
 		if($totalArgs > 1)
 		{
-		    foreach (func_get_args() as $listFields) {
+		    foreach ($listFields as $theRow) {
 		       
-				$keyNames=array_keys($listFields);
+				$keyNames=array_keys($theRow);
 
 				$insertKeys=implode(',', $keyNames);
 
-				$keyValues=array_values($listFields);
+				$keyValues=array_values($theRow);
 
 				$insertValues="'".implode("','", $keyValues)."'";
 
@@ -226,6 +207,7 @@ class LINQ
 		}
 		else
 		{
+
 			$keyNames=array_keys($listFields);
 
 			$insertKeys=implode(',', $keyNames);

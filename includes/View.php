@@ -20,7 +20,20 @@ class View
         return $path;
     }
     
+    public function resetPath()
+    {
+        self::$loadPath=VIEWS_PATH;
+    }
 
+    public function makeWithPath($viewName = '', $viewData = array(),$path)
+    {
+        self::setPath($path);
+
+        self::make($viewName,$viewData);
+
+        self::resetPath();
+    }
+    
     public function make($viewName = '', $viewData = array())
     {
         if (preg_match('/\./i', $viewName)) {

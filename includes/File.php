@@ -5,6 +5,17 @@
 class File
 {
 
+    public function md5($filePath='')
+    {
+        if(!file_exists($filePath))
+        {
+            return false;
+        }
+
+        return md5_file($filePath);
+
+    }
+    
     public function unzipModule($fullPath,$remove='no')
     {
         $zip = new Unzip($fullPath);
@@ -241,7 +252,7 @@ class File
     {
         $name=$_FILES[$keyName]['name'];
 
-        if(!preg_match('/.*?\.(\w+)/i', $name,$match))
+        if(!preg_match('/^.*?\.(\w+)$/i', $name,$match))
         {
             return false;
         }
@@ -269,7 +280,7 @@ class File
 
         $resultData=array();
 
-        if(!preg_match('/.*?\.\w+/i', $name))
+        if(!preg_match('/^.*?\.\w+$/i', $name))
         {
             return false;
         }
@@ -311,7 +322,7 @@ class File
     {
         $imgUrl=trim($imgUrl);
 
-        if(!preg_match('/http.*?\.(\w+)/i', $imgUrl,$match))
+        if(!preg_match('/^http.*?\.(\w+)$/i', $imgUrl,$match))
         {
             return false;
         }

@@ -12,6 +12,7 @@ class Http
         $inputData=($inputData=='ua')?'useragent':$inputData;
 
         $inputData=($inputData=='remoteadd')?'remoteip':$inputData;
+       $inputData=($inputData=='ip')?'remoteip':$inputData;
 
         $inputData=($inputData=='authpassword')?'authpass':$inputData;
 

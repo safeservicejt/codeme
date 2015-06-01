@@ -3,7 +3,7 @@
 class Captcha
 {
 
-//    private static $thisHash = '';
+//    private $thisHash = '';
 
     public function make($is_text = 'no')
     {
@@ -16,7 +16,7 @@ class Captcha
 
         imagefill($main_img, 0, 0, $bg_color);
 
-        $captcha_str = String::randNumber(5) . ' ' . String::randNumber(5);
+        $captcha_str = String::randNumber(5) . '' . String::randNumber(5);
 
         $dbColor = array(
             0 => array(100, 161, 39),
@@ -82,7 +82,7 @@ class Captcha
 
 //        self::$thisHash=$hash;
 
-        $_SESSION["$hash"] = 'OK';
+        $_SESSION['captcha'][$hash] = 'OK';
 
 //        End create session
 
@@ -112,22 +112,23 @@ class Captcha
 
     public function verify($inputName = 'captcha_verify')
     {
+        // print_r($_SESSION['captcha']);die();
         if (isset($_REQUEST[$inputName])) {
 
             $text = md5($_REQUEST[$inputName]);
 
-            if(!isset($_SESSION[$text]))
+            if(!isset($_SESSION['captcha'][$text]))
             {
                 return false;
             }
 
-            $verifyStatus = ($_SESSION[$text] == 'OK') ? true : false;
+            $verifyStatus = ($_SESSION['captcha'][$text] == 'OK') ? true : false;
 
             if($verifyStatus)
             {
-                $_SESSION[$text]='';
+                // $_SESSION['captcha'][$text]='';
 
-                unset($_SESSION[$text]);
+                unset($_SESSION['captcha'][$text]);
             }
 
             return $verifyStatus;
@@ -149,7 +150,7 @@ class Captcha
 
                 <span style="margin:0px;padding:0px;margin-left: 5px;color:#ffffff;">Type the characters:</span>
                 <br>
-                <input type="text" name="captcha_verify" style="color:#000000;margin:0px;padding:0px;border:1px solid #D4D4D4;width: 140px;margin-left: 5px;height:30px;max-height:30px;border-radius: 3px;" />
+                <input type="text" placeholder="Type the characters.. " name="captcha_verify" style="color:#000000;margin:0px;padding:0px;border:1px solid #D4D4D4;width: 140px;margin-left: 5px;height:30px;max-height:30px;border-radius: 3px;" />
             </div>
             <div style="margin:0px;padding:0px;float:left;width:115px;min-height:52px;max-height:52px;margin-top:0px;margin-left: 0px; ">
 

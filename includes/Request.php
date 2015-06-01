@@ -3,6 +3,44 @@
 
 class Request
 {
+    public function isImage($keyName)
+    {
+        if(preg_match('/(\w+)\.(\d+)/i', $keyName,$match))
+        {
+            if(isset($_FILES[$match[1]][$match[2]]) && preg_match('/.*?\.\w+$/i', $_FILES[$match[1]][$match[2]]['name']))
+            {
+                return true;
+            }               
+        }
+        else
+        {
+            if(isset($_FILES[$keyName]) && preg_match('/.*?\.\w+$/i', $_FILES[$keyName]['name']))
+            {
+                return true;
+            }            
+        }
+
+
+        return false;
+    }
+
+    public function hasFile($keyName)
+    {
+        if(preg_match('/(\w+)\.(\d+)/i', $keyName,$match))
+        {
+            return true;              
+        }
+        elseif(preg_match('/(\w+)/i', $keyName,$match))
+        {
+            return true;          
+        }
+
+
+        return false;
+    }
+
+
+
     public function get($reqName = '', $reqValue = '')
     {
         $result = '';
@@ -119,7 +157,7 @@ class Request
         }
     }
 
-    public function has($reqName = '')
+    public function hasElement($reqName = '')
     {
         if (!preg_match('/(\w+)\.(\w+)/i', $reqName, $matchesName)) {
             if (!isset($_REQUEST[$reqName])) {
@@ -135,8 +173,31 @@ class Request
                 return false;
             }
             return true;
-        }
+        }        
+    }
 
+    public function has($reqName = '')
+    {
+        if(!is_array($reqName))
+        {
+            $result=self::hasElement($reqName);
+        }
+        else
+        {
+            $total=count($reqName);
+
+            for ($i=0; $i < $total; $i++) { 
+
+                $result=self::hasElement($reqName[$i]);
+
+                if(!$result)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 
 

@@ -12,6 +12,11 @@ class Model
         self::$loadPath=$path;
     }
 
+    public function resetPath()
+    {
+        self::$loadPath=MODELS_PATH;
+    }
+    
     public function getPath()
     {
         $path=!isset(self::$loadPath[2])?MODELS_PATH:self::$loadPath;
@@ -20,7 +25,14 @@ class Model
 
         return $path;
     }
-    
+    public function loadWithPath($modelName = '', $path)
+    {
+        self::setPath($path);
+
+        self::load($modelName);
+
+        self::resetPath();
+    }    
 
     public function load($modelName = '')
     {

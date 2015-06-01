@@ -440,6 +440,23 @@ class Database
         }
 
     }
+    public function affected_rows($objectStr = '')
+    {
+        switch (self::$dbType) {
+            case "mysqli":
+
+                $totalRows = self::$dbConnect->affected_rows;
+
+                if (is_object($objectStr)) {
+                    $objectStr($totalRows);
+                }
+
+                return $totalRows;
+
+                break;
+        }
+
+    }
 
     public function insert_id($objectStr = '')
     {

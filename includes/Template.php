@@ -70,55 +70,44 @@ class Template
         $loadData=self::parseFriendlyFunction($loadData);
         
     	$replace=array(
-    		'/\{include file="(.*?)"\}/i'=>'<?php Template::make($1);?>',
-    		'/\{include file=\'(.*?)\'\}/i'=>'<?php Template::make($1);?>',
-    		'/\{include "(.*?)"\}/i'=>'<?php Template::make($1);?>',
-    		'/\{include \'(.*?)\'\}/i'=>'<?php Template::make($1);?>',
-    		'/\{include (.*?)\}/i'=>'<?php Template::make($1);?>',
+    		'/\{\{assign var="(\w+)" value="(.*?)"\}\}/i'=>'<?php $$1="$2";?>',
+    		'/\{\{\$(.*?)=(.*?)\}\}/i'=>'<?php $$1=$2;?>',
+    		'/\{\{(.*?)=(.*?)\}\}/i'=>'<?php $$1=$2;?>',
+    		'/\{\{(\w+)=(.*?)\}\}/i'=>'<?php $$1=$2;?>',
+    		'/\{\{\$(.*?) (.*?)\}\}/i'=>'<?php $$1 $2;?>',
 
-    		'/\{include_php file="(.*?)"\}/i'=>'<?php include("$1")?>',
-    		'/\{include_php file=\'(.*?)\'\}/i'=>'<?php include("$1")?>',
-    		'/\{include_php "(.*?)"\}/i'=>'<?php include("$1")?>',
-    		'/\{include_php \'(.*?)\'\}/i'=>'<?php include("$1")?>',
-    		'/\{include_php (.*?)\}/i'=>'<?php include("$1")?>',
+            '/\{\{\$(.*?)\}\}/i'=>'<?php echo $$1;?>',
 
-    		'/\{assign var="(\w+)" value="(.*?)"\}/i'=>'<?php $$1="$2";?>',
-    		'/\{\$(.*?)=(.*?)\}/i'=>'<?php $$1=$2;?>',
-    		'/\{(.*?)=(.*?)\}/i'=>'<?php $$1=$2;?>',
-    		'/\{(\w+)=(.*?)\}/i'=>'<?php $$1=$2;?>',
-    		'/\{\$(.*?) (.*?)\}/i'=>'<?php $$1 $2;?>',
+    		'/\{\{(\w+)::(\w+)\((.*?)\)\}\}/i'=>'<?php $1::$2($3);?>',
 
-            '/\{\$(.*?)\}/i'=>'<?php echo $$1;?>',
-
-    		'/\{(\w+)::(\w+)\((.*?)\)\}/i'=>'<?php $1::$2($3);?>',
-
-    		'/\{if (.*?)\}/i'=>'<?php if($1){ ?>',
-    		'/\{elseif (.*?)\}/i'=>'<?php }elseif($1){ ?>',
-    		'/\{else\}/i'=>'<?php }else{ ?>',
-            '/\{\/if\}/i'=>'<?php } ?>',
+    		'/\{\{if (.*?)\}\}/i'=>'<?php if($1){ ?>',
+    		'/\{\{elseif (.*?)\}\}/i'=>'<?php }elseif($1){ ?>',
+    		'/\{\{else\}\}/i'=>'<?php }else{ ?>',
+            '/\{\{\/if\}\}/i'=>'<?php } ?>',
 
             '/\<\?=(.*?)\?\>/i'=>'<?php echo $1 ?>',
 
-            '/\{loop total=(\d+)\}/i'=>'<?php for($i=1;$i<=$1;$i++){ ?>',
-            '/\{loop:(\d+)\}/i'=>'<?php for($i=1;$i<=$1;$i++){ ?>',
+            '/\{\{loop total=(\d+)\}\}/i'=>'<?php for($i=1;$i<=$1;$i++){ ?>',
+            '/\{\{loop:(\d+)\}\}/i'=>'<?php for($i=1;$i<=$1;$i++){ ?>',
 
-            '/\{\/loop\}/i'=>'<?php } ?>',
+            '/\{\{\/loop\}\}/i'=>'<?php } ?>',
 
-            '/\{foreach (\w+) as (\w+)\}/i'=>'<?php foreach($$1 as $$2){ ?>',
-            '/\{endfor\}/i'=>'<?php } ?>',
+            '/\{\{foreach (\w+) as (\w+)\}\}/i'=>'<?php foreach($$1 as $$2){ ?>',
+            '/\{\{endfor\}\}/i'=>'<?php } ?>',
 
-            '/\(\{(\w+)\.(\w+)\}\)/i'=>'$$1["$2"]',
-            '/\(\{(\w+)\.(\w+)\.(\w+)\}\)/i'=>'$$1["$2"]["$3"]',
-            '/\(\{(\w+)\.(\w+)\.(\w+)\.(\w+)\}\)/i'=>'$$1["$2"]["$3"]["$4"]',
+            '/\(\{\{(\w+)\.(\w+)\}\}\)/i'=>'$$1["$2"]',
+            '/\(\{\{(\w+)\.(\w+)\.(\w+)\}\}\)/i'=>'$$1["$2"]["$3"]',
+            '/\(\{\{(\w+)\.(\w+)\.(\w+)\.(\w+)\}\}\)/i'=>'$$1["$2"]["$3"]["$4"]',
 
-            '/\{(\w+)\.(\w+)\}/i'=>'<?php echo $$1["$2"];?>',
-            '/\{(\w+)\.(\w+)\.(\w+)\}/i'=>'<?php echo $$1["$2"]["$3"];?>',
-            '/\{(\w+)\.(\w+)\.(\w+)\.(\w+)\}/i'=>'<?php echo $$1["$2"]["$3"]["$4"];?>',
+            '/\{\{(\w+)\.(\w+)\}\}/i'=>'<?php echo $$1["$2"];?>',
+            '/\{\{(\w+)\.(\w+)\.(\w+)\}\}/i'=>'<?php echo $$1["$2"]["$3"];?>',
+            '/\{\{(\w+)\.(\w+)\.(\w+)\.(\w+)\}\}/i'=>'<?php echo $$1["$2"]["$3"]["$4"];?>',
 
-            '/\{(\w+) or (.*?)\}/i'=>'<?php $$1=isset($$1[0])?$$1:$2; echo $$1;?>',
-            '/\{(\$\w+) or (.*?)\}/i'=>'<?php $1=isset($1[0])?$1:$2; echo $1;?>',
+            '/\{\{(\w+) or (.*?)\}\}/i'=>'<?php $$1=isset($$1[0])?$$1:$2; echo $$1;?>',
+            '/\{\{(\$\w+) or (.*?)\}\}/i'=>'<?php $1=isset($1[0])?$1:$2; echo $1;?>',
 
-    		'/\{block .*?\}.*?\{\/block\}/i'=>''
+    		'/\{\{block .*?\}\}.*?\{\{\/block\}\}/i'=>''
+
     		);
 
     	$loadData=preg_replace(array_keys($replace), array_values($replace), $loadData);
@@ -134,7 +123,7 @@ class Template
 
     public function parseFriendlyFunction($loadData)
     {
-         preg_match_all('/(\{(\w+|\w+\.\w+) | .*?\})/i', $loadData, $matches);
+         preg_match_all('/(\{\{(\w+|\w+\.\w+) | .*?\}\})/i', $loadData, $matches);
 
          $total=count($matches[0]);
 
@@ -215,15 +204,15 @@ class Template
     public function parseExtends($loadData)
     {
     	// $replace=array(
-    	// 	'/\{extends file=\'(.*?)\'\}/i'=>self::loadExtends("$1"),
-    	// 	'/\{extends file="(.*?)"\}/i'=>self::loadExtends("$1"),
-    	// 	'/\{extends \'(.*?)\'\}/i'=>self::loadExtends("$1"),
-    	// 	'/\{extends "(.*?)"\}/i'=>self::loadExtends("$1")
+    	// 	'/\{\{extends file=\'(.*?)\'\}\}/i'=>self::loadExtends("$1"),
+    	// 	'/\{\{extends file="(.*?)"\}\}/i'=>self::loadExtends("$1"),
+    	// 	'/\{\{extends \'(.*?)\'\}\}/i'=>self::loadExtends("$1"),
+    	// 	'/\{\{extends "(.*?)"\}\}/i'=>self::loadExtends("$1")
     	// 	);
 
     	// $loadData=preg_replace(array_keys($replace), array_values($replace), $loadData);
 
-    	preg_match_all('/\{extends (\'|\"|file=\'|file=\")(.*?)(\'|\")\}/i', $loadData, $matches);
+    	preg_match_all('/\{\{extends (\'|\"|file=\'|file=\")(.*?)(\'|\")\}\}/i', $loadData, $matches);
 
     	$total=count($matches[2]);
 

@@ -16,6 +16,11 @@ class Cache
         self::$cachePath=$path;
     }
 
+    public function resetPath()
+    {
+        self::$cachePath=CACHES_PATH;
+    }
+    
     public function getPath()
     {
         $path=!isset(self::$cachePath[2])?CACHES_PATH:self::$cachePath;
@@ -32,6 +37,49 @@ class Cache
         self::$cacheLiveTime = $liveTime;
 
         self::loadCache();
+    }
+
+    public function savePage($extension='.template')
+    {
+        $keyName=isset($_GET['load'])?trim($_GET['load']):'defaultHome';
+
+        $savePath=ROOT_PATH.'application/caches/templates/';
+
+        self::setPath($savePath);
+
+        $keyData=ob_get_contents();
+
+        $keyName=md5($keyName);
+
+        $keyData=gzcompress($keyData,5);
+
+        self::saveKey($keyName,serialize($keyData),$extension);
+
+        self::resetPath();
+    }
+
+    public function loadPage($liveTime=86400,$extension='.template')
+    {
+        $keyName=isset($_GET['load'])?trim($_GET['load']):'defaultHome';
+
+        $keyName=md5($keyName);
+
+        $savePath=ROOT_PATH.'application/caches/templates/';
+
+        self::setPath($savePath);        
+
+        if(!$loadData=self::loadKey($keyName,$liveTime,$extension))
+        {
+            return false;
+        }
+
+        $loadData=unserialize($loadData);
+
+        $loadData=gzuncompress($loadData);  
+
+        echo $loadData;
+
+        exit(0);
     }
 
     public function loadCache()
@@ -91,6 +139,8 @@ class Cache
     {
         // $filePath=CACHES_PATH.$keyName.'.cache';
         $filePath=self::getPath().$keyName.$extension;
+
+        // die($filePath);
 
         if(!file_exists($filePath))return false;
 

@@ -39,6 +39,24 @@ class Mail
 
     }
 
+    public function send($inputData=array())
+    {
+        
+        self::sendMail(array(
+            'smtpAddress'=>$inputData['smtpAddress'],
+            'smtpUser'=>$inputData['smtpUser'],
+            'smtpPass'=>$inputData['smtpPass'],
+            'smtpPort'=>$inputData['smtpPort'],
+            'fromEmail'=>$inputData['fromEmail'],
+            'fromName'=>$inputData['fromName'],
+            'toEmail'=>$inputData['toEmail'],
+            'toName'=>$inputData['toName'],
+            'subject'=>$inputData['subject'],
+            'message'=>$inputData['content']
+            ));
+
+    }
+
     public function sendMail($accountPosition = 0)
     {
         $mailConfig = $this->listAccounts[$accountPosition];
