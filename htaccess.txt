@@ -12,3 +12,10 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?load=$1 [L]
+
+<IfModule mod_expires.c>
+	ExpiresActive On
+	<FilesMatch "\.(ico|gif|jpe?g|png|svg|svgz|js|css|swf|ttf|otf|woff|eot)$">
+		ExpiresDefault "access plus 1 month"
+	</FilesMatch>
+</IfModule>

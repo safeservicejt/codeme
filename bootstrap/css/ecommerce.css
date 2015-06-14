@@ -1,0 +1,88 @@
+.prodOldPrice
+{
+  font-weight: bold;
+  text-decoration: line-through;
+  color:#7A7A7A;
+}
+.prodPrice
+{
+
+font-weight: bold;
+  color:#69bd43;
+}
+
+
+.rowCart
+{
+  margin:0px 0px 20px 0px;
+}
+
+.rowCart .rowTotal
+{
+   margin:20px 0px 20px 0px;
+   padding-top: 20px;
+   border-top: 1px solid #BDBDBD;
+}
+.rowCart table input[type="text"]
+{
+  min-height: 43px;
+
+}
+.rowCart table a:link,
+.rowCart table a,
+.rowCart table a:visited
+{
+  color:#242424;
+  text-decoration: none;
+  display: block;
+}
+.rowCart table a:hover
+{
+  color:#242424;
+  /*text-decoration: none;*/
+}
+.rowTotal .row
+{
+  margin: 10px 0px 10px 0px;
+}
+.rowContinueButton
+{
+  margin: 20px 0px 20px 0px;
+  border:1px solid #BDBDBD;
+  padding:3px;
+}
+
+.colPanelBody
+{
+  /*display: none;*/
+}
+
+.colPanelBody .row
+{
+    margin: 10px 0px 10px 0px;
+}
+
+.rowComment
+{
+  padding:0px;
+}
+
+.divCoupon
+{
+  display: none;
+}
+.divVoucher
+{
+  display: none;
+}
+
+.paymentForm
+{
+  display: none;
+}
+
+.thePaymentMethod,
+.thePointer
+{
+  cursor: pointer;
+}

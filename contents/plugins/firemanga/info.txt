@@ -1,0 +1,5 @@
+Fire Manga - Manga builder system
+James
+1.0
+Manga Builder System. Build your own manga site! Support auto leech from other sites.
+https://www.facebook.com/safeservicejt

@@ -1,0 +1,5 @@
+Cash on delivery
+James
+3.0
+Configuration page, and save your API key.
+http://google.com/

@@ -1,0 +1,122 @@
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+border-color: #333333;
+}
+.navbar-inverse {
+background-color: #222222;
+border-color: #333333;
+}
+
+div#page-wrapper
+{
+	min-height: 1024px;
+	background-color: #f1f1f1;
+}
+
+
+.ulDashboard
+{
+  list-style: none;
+  padding:0px;
+}
+
+.ulDashboard li
+{
+  margin:10px 0px 10px 0px;
+}
+
+.ulDashboard li a
+{
+  color:#575757;
+  display: block;
+}
+
+.ulDashboard li a:hover
+{
+text-decoration: none;
+}
+
+/*Auto chosen*/
+.pChosen
+{
+  /*position: relative;*/
+
+}
+.ulChosen
+{
+  /*position: absolute;*/
+
+  list-style: none;
+
+  padding: 0px;
+
+  /*top: 35px;*/
+  /*margin-left: 10px;*/
+}
+
+.ulChosen li
+{
+  float: left;
+  padding: 2px 2px 2px 2px;
+  cursor: pointer;
+  background-color: #1C8FED;
+
+  margin-right: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+}
+
+.ulChosen li span
+{
+  color: #ffffff;
+}
+.ulChosen li .removeTextChosen:hover
+{
+  color: #F50C2B;
+}
+.removeTextChosen
+{
+  margin-left: 5px;
+}
+
+/*Auto complete*/
+.colRelative
+{
+  position: relative;
+}
+
+.listAutoSuggest
+{
+  position: absolute;
+  /*top:76px;*/
+
+  z-index: 9999999;
+  display: none;
+  max-height: 200px;
+  overflow: scroll;
+      overflow-y: auto;
+    overflow-x: hidden;  
+}
+
+.listAutoSuggest ul
+{
+  list-style: none;
+  padding:0px;
+  background-color: #ffffff;
+  min-width: 300px;
+}
+.listAutoSuggest ul > li span
+{
+  display: block;
+  cursor: pointer;
+  color:#242424;
+  padding: 5px 0px 5px 5px;
+
+  border-bottom: 1px solid #D9D9D9;
+}
+.listAutoSuggest ul > li span:hover
+{
+  background-color: #D9D9D9;
+}
+
+/*Auto complete*/

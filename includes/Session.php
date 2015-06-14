@@ -1,60 +1,79 @@
 <?php
 
-
-
 class Session
 {
 
-
-    function __construct()
+    public function get($sessionName = '',$defaultValue=false)
     {
+        $resultData = $defaultValue;
+        
+        if (!preg_match('/^(\w+)\.(\w+)$/i', $sessionName, $matches)) {
+            $resultData = isset($_SESSION["$sessionName"]) ? $_SESSION["$sessionName"] : $defaultValue;
+  
+        } else {
+
+            $sessionMain = $matches[1];
+
+            $sessionChild = $matches[2];
+
+            $resultData = isset($_SESSION["$sessionMain"]["$sessionChild"]) ? $_SESSION["$sessionMain"]["$sessionChild"] : $defaultValue;
+
+        }
+         
+        return $resultData;
+
     }
 
-    public function get($sessionName = '')
+    public function has($sessionName='')
     {
-        $session = null;
-        if (session_id() != null) {
 
-            if (!preg_match('/(\w+)\.(\w+)/i', $sessionName, $matches)) {
-                $session = isset($_SESSION[$sessionName]) ? $_SESSION[$sessionName] : '';
-            } else {
+        if (!preg_match('/(\w+)\.(\w+)/i', $sessionName, $matches)) {
+            $session = isset($_SESSION[$sessionName]) ? true : false;
 
-                $sessionMain = $matches[1];
+            return $session;
+        } else {
 
-                $sessionChild = $matches[2];
+            $sessionMain = $matches[1];
 
-                $session = $_SESSION[$sessionMain][$sessionChild];
+            $sessionChild = $matches[2];
 
+            if(!isset($_SESSION[$sessionMain][$sessionChild]))
+            {
+                return false;
             }
 
         }
 
-        return $session;
-
+        return true;
     }
 
     public function make($sessionName = '', $sessionValue = '')
     {
-        if (session_id() != null) {
+        if(preg_match('/(\w+)\.(\w+)/i', $sessionName,$matches))
+        {   
+            $s1=$matches[1];
+
+            $s2=$matches[2];
+
+            $_SESSION[$s1][$s2] = $sessionValue;
+        }
+        else
+        {
             $_SESSION[$sessionName] = $sessionValue;
         }
     }
 
     public function forget($sessionName = '')
     {
-        if (session_id() != null) {
+        if (!preg_match('/(\w+)\.(\w+)/i', $sessionName, $matches)) {
+            unset($_SESSION[$sessionName]);
+        } else {
 
-            if (!preg_match('/(\w+)\.(\w+)/i', $sessionName, $matches)) {
-                unset($_SESSION[$sessionName]);
-            } else {
+            $sessionMain = $matches[1];
 
-                $sessionMain = $matches[1];
+            $sessionChild = $matches[2];
 
-                $sessionChild = $matches[2];
-
-                unset($_SESSION[$sessionMain][$sessionChild]);
-
-            }
+            unset($_SESSION[$sessionMain][$sessionChild]);
 
         }
     }
@@ -66,24 +85,19 @@ class Session
 
     public function flush()
     {
-        if (session_id() != null) {
-            session_unset();
-        }
+        session_unset();
     }
 
     public function push($sessionName = '', $sessionValue = '')
     {
-        if (session_id() != null) {
+        preg_match('/(\w+)\.(\w+)/i', $sessionName, $matches);
 
-            preg_match('/(\w+)\.(\w+)/i', $sessionName, $matches);
+        $sessionMain = $matches[1];
 
-            $sessionMain = $matches[1];
-
-            $sessionChild = $matches[2];
+        $sessionChild = $matches[2];
 
 
-            $_SESSION[$sessionMain][$sessionChild] = $sessionValue;
-        }
+        $_SESSION[$sessionMain][$sessionChild] = $sessionValue;
     }
 
     public function put($sessionName = '', $sessionValue = '')

@@ -1,0 +1,54 @@
+body
+{
+  background-color: #f1f1f1;
+}
+.nav-tabs > li a
+{
+    color:#E0E0E0;
+        background-color: #227BBA;
+}
+.nav-tabs > li
+{
+    background-color: #227BBA;
+    margin-right: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.nav-tabs > li.active:hover a
+{
+        color:#CCCCCC;
+    background-color:#227BBA;
+      border:0px;
+}
+.nav-tabs > li:hover a
+{
+        color:#CCCCCC;
+    background-color: #227BBA;
+    border:0px;
+       border:1px solid #227BBA;
+}
+
+.nav-tabs > li.active a
+{
+        color:#E0E0E0;
+       background-color: #227BBA;
+       border:0px;
+
+}
+.nav-tabs > li.active
+{
+        color:#E0E0E0;
+       background-color: #227BBA;
+          border:1px solid #227BBA;
+
+}
+
+
+.panel-2,
+.panel-3,
+.btnContinue
+{
+  display: none;
+}
+
+

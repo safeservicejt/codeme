@@ -1,0 +1,36 @@
+.btn
+{
+    border-radius:0px;
+}
+.form-control
+{
+    border-radius:0px;
+    box-shadow: 0px 0px 0px ;
+}
+.dropdown-menu
+{
+    border-radius:0px;
+
+}
+.nav-tabs > li > a
+{
+    border-radius:0px;
+}
+.nav-pills > li > a
+{
+    border-radius:0px;
+}
+.navbar
+{
+    border-radius:0px;
+}
+.label
+{
+    border-radius:0px;
+}
+.alert,
+.panel
+{
+    border-radius:0px;
+}
+

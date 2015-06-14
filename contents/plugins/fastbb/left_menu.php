@@ -1,0 +1,1 @@
+Left menu plugins demo 

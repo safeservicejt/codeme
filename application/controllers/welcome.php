@@ -2,11 +2,12 @@
 
 class welcome
 {
-
-    public function number()
+    public function index()
     {
-        echo 'Number';
+        View::make('welcome');
     }
+
+
 
 }
 
