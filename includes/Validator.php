@@ -20,16 +20,25 @@ class Validator
 
             $keyValue = Request::get($keyName,'VALIDATOR');
 
-            if($keyValue=='VALIDATOR')
-            {
-                // self::$error='The request '.$keyName.' not exists.';
+            // if($keyValue=='VALIDATOR')
+            // {
+            //     // self::$error='The request '.$keyName.' not exists.';
 
-                // return false;
+            //     // return false;
 
-                continue;
-            }
+            //     continue;
+            // }
 
             if (preg_match('/required|min|max|email|number|alpha|word|slashes/i', $varName[$keyName])) {
+
+                if(preg_match('/required/i', $varName[$keyName]) && $keyValue=='VALIDATOR')
+                {
+                    self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
+
+                    self::$message.='Request '.$keyName.' not exists. ';
+
+                    return false;
+                }
 
                 $listRequire = explode('|', $varName[$keyName]);
 
@@ -82,7 +91,7 @@ class Validator
 
                         switch ($reqValue) {
                             case 'required':
-                                if (Request::has($keyName)==false)
+                                if ($keyValue=='VALIDATOR')
                                 {
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
 
@@ -151,83 +160,6 @@ class Validator
         }
 
         return true;
-    }
-    public function check($varName = array())
-    {
-        $totalVarName = count($varName);
-
-        $listKeys = array_keys($varName);
-
-        for ($i = 0; $i < $totalVarName; $i++) {
-            $keyName = $listKeys[$i];
-
-            if (preg_match('/min|max|email|number|alpha|word|slashes/i', $varName[$keyName])) {
-
-                $listRequire = explode('|', $varName[$keyName]);
-
-                $totalRequire = count($listRequire);
-
-                for ($j = 0; $j < $totalRequire; $j++) {
-                    $reqValue = trim($listRequire[$j]);
-
-                    if (preg_match('/(\w+)\:(\d+)/i', $reqValue, $matchesReqValues)) {
-
-                        $matchLeft = $matchesReqValues[1];
-
-                        $matchRight = (int)$matchesReqValues[2];
-
-                        $keyValue = $keyName;
-
-                        switch ($matchLeft) {
-                            case 'min':
-                                $matchRight--;
-
-                                if (!isset($keyValue[$matchRight])) return false;
-
-                                break;
-                            case 'max':
-                                $matchRight;
-
-                                if (isset($keyValue[$matchRight])) return false;
-
-                                break;
-
-
-                        }
-
-                    } else {
-
-                        switch ($reqValue) {
-                            case 'email':
-                                if (!preg_match('/^.*?\@.*?\.\w+$/i', $keyName)) return false;
-                                break;
-                            case 'number':
-                                if (!preg_match('/^\d+$/', $keyName)) return false;
-                                break;
-                            case 'alpha':
-                                if (!preg_match('/^[a-zA-Z]+$/i', $keyName)) return false;
-                                break;
-                            case 'word':
-                                if (!preg_match('/^[a-zA-Z0-9_\@\!\#\$\%\^\&\*\(\)\.\|]+$/i', $keyName)) return false;
-                                break;
-                            case 'slashes':
-                                if (preg_match('/\'|\"/', $keyName)) return false;
-                                break;
-
-
-                        }
-                    }
-
-
-                }
-
-
-            } 
-
-        }
-
-        return true;
-
     }
 
 

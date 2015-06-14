@@ -108,21 +108,96 @@ class Http
         return $data;
     }
 
-    public function getDataUrl($url, $follow = 'yes')
+
+
+    public function getDataUrl($url,$hasHeader='yes', $follow = 'yes')
     {
+        $headers = array();
+        // $headers[] = 'X-Apple-Tz: 0';
+        // $headers[] = 'X-Apple-Store-Front: 143444,12';
+        // $headers[] = 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8';
+        // $headers[] = 'Accept-Encoding: gzip, deflate';
+        // $headers[] = 'Accept-Language: en-US,en;q=0.5';
+        $headers[] = 'Cache-Control: max-age=0';
+        $headers[] = 'Content-Type: text/html';
+         $headers[] = 'Connection: keep-alive';
+         $headers[] = 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8';
+         $headers[] = 'Accept-Encoding: gzip, deflate, sdch';
+
+        // $headers[] = 'Host: www.example.com';
+        // $headers[] = 'Referer: http://www.example.com/index.php'; //Your referrer address
+        // $headers[] = 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:28.0) Gecko/20100101 Firefox/28.0';
+        // $headers[] = 'X-MicrosoftAjax: Delta=true';
+
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_USERAGENT, " Google Mozilla/5.0 (compatible; Googlebot/2.1;)");
         if ($follow == 'yes') curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_REFERER, "http://www.google.com/bot.html");
-        curl_setopt($ch, CURLOPT_HEADER, 0);
+
+        if($hasHeader=='yes')
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        // curl_setopt($ch, CURLOPT_HEADER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5000);
         curl_setopt($ch, CURLOPT_TIMEOUT, 5000);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         $result = curl_exec($ch);
+
+        // $result=gzuncompress($result);
+
+        if($hasHeader=='yes')
+        $result=Compress::gzdecode($result);
+
+         // File::create(ROOT_PATH.'accc.txt',$result);
+
         return $result;
     }
+
+    public function getDataUrlByGoogleBot($url,$hasHeader='yes', $follow = 'yes')
+    {
+        $headers = array();
+        // $headers[] = 'X-Apple-Tz: 0';
+        // $headers[] = 'X-Apple-Store-Front: 143444,12';
+        // $headers[] = 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8';
+        // $headers[] = 'Accept-Encoding: gzip, deflate';
+        // $headers[] = 'Accept-Language: en-US,en;q=0.5';
+        $headers[] = 'Cache-Control: max-age=0';
+        $headers[] = 'Content-Type: text/html';
+         $headers[] = 'Connection: keep-alive';
+         $headers[] = 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8';
+         $headers[] = 'Accept-Encoding: gzip, deflate, sdch';
+
+        // $headers[] = 'Host: www.example.com';
+        // $headers[] = 'Referer: http://www.example.com/index.php'; //Your referrer address
+        // $headers[] = 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:28.0) Gecko/20100101 Firefox/28.0';
+        // $headers[] = 'X-MicrosoftAjax: Delta=true';
+
+        $ch = curl_init();
+        if ($follow == 'yes') curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_URL, $url);
+
+        if($hasHeader=='yes')        
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_USERAGENT, " Google Mozilla/5.0 (compatible; Googlebot/2.1;)");
+        curl_setopt($ch, CURLOPT_REFERER, "http://www.google.com/bot.html");
+        // curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5000);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 5000);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        $result = curl_exec($ch);
+
+        // $result=gzuncompress($result);
+
+        if($hasHeader=='yes')
+        $result=Compress::gzdecode($result);
+
+         // File::create(ROOT_PATH.'accc.txt',$result);
+
+        return $result;
+    }
+
 
     public function copyDataUrl($source, $desc)
     {

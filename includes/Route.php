@@ -6,8 +6,10 @@ class Route
 
     public static $hasParent='no';
 
-    public function get($routeName='',$controllerName)
+    public  function get($routeName='',$controllerName)
     {
+        $uri=isset($_GET['load'])?$_GET['load']:'';
+        
         $varObject = '';
 
 
@@ -19,16 +21,7 @@ class Route
         //     return false;
         // }
 
-        if (is_object($controllerName)) {
 
-            (object)$varObject = $controllerName;
-
-            $controllerName = '';
-
-            $varObject();
-
-            die();
-        }  
 
 
         $subFunc='index';
@@ -42,22 +35,33 @@ class Route
                 $routeName=str_replace('/', '\/', $routeName);               
             }
 
-            if(isset($_GET['load']) && !preg_match('/'.$routeName.'/i', $_GET['load']))
+            if(isset($uri) && !preg_match('/'.$routeName.'/i', $uri))
             {
                 return false;
             }
   
         }
 
-        if(isset($_GET['load']) && preg_match('/(.*?)\@(\w+)/i', $controllerName,$matches))
+        if(isset($uri) && preg_match('/(.*?)\@(\w+)/i', $controllerName,$matches))
         {
             $controllerName=$matches[1];
 
             $subFunc=$matches[2];
         }
+        if (is_object($controllerName)) {
 
-        Controller::load($controllerName,$subFunc);
+            (object)$varObject = $controllerName;
 
+            $controllerName = '';
+
+            $varObject();
+
+        }          
+        else
+        {
+            Controller::load($controllerName,$subFunc);
+        }
+        
         die();
 
     }

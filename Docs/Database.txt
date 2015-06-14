@@ -1,0 +1,87 @@
+//Connect to database
+
+Database::connect();
+
+//Connect to another db
+
+Database::connect('custom-name');
+
+//Make a query
+
+$query=Database::query("select * from table_name");
+
+//Work with anonymous function
+
+$query=Database::query("select * from table_name",function($query){
+
+$dataRows=Database::fetch_assoc($query);
+
+});
+
+//Get numrows
+
+$numRows=Database::num_rows($query);
+
+//Work with anonymous function
+
+$numRows=Database::num_rows($query,function($result){
+
+if((int)$result == 0)
+
+{ //do something }
+
+});
+
+//Fetch assoc
+
+$dataRow=Database:fetch_assoc($query);
+
+//Work with anonymous function
+
+$dataRow=Database:fetch_assoc($query,function($result){
+
+print_r($result);
+
+});
+
+//Get insert id
+
+$id=Database::insert_id();
+
+//Work with anonymous function
+
+Database::insert_id(function($result){
+
+echo $result;
+
+});
+
+//Insert with ORM
+
+$user = new DatabaseORM('users');
+
+$user->username = 'test';
+
+$user->password = md5('demodemo');
+
+$id=$user->InsertOnSubmit();
+
+echo $id;
+
+//Update with ORM
+
+$user = new DatabaseORM('users');
+
+$user->where('userid',30)->where('fullname','safeservicejt');
+
+$user->username = 'testtest'; $user->password = md5('fgfg');
+
+$user->SubmitChanges();
+
+//Delete with ORM
+
+$user = new DatabaseORM('users');
+
+$user->where('userid',30);
+
+$user->DeleteOnSubmit();

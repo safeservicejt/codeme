@@ -1,0 +1,25 @@
+//Check valid it wil return bool (true/false)
+
+$valid=Validator::make(array(
+
+//username have min length is 5 & must is alpha (a-z A-Z)
+
+'username'=>'required|min:5|alpha',
+
+//Email have email format & max length is 100
+
+'email'=>'required|email|max:100',
+
+//Phone must is number & min length is 9
+
+'phone'=>'required|number|min:9'
+
+));
+
+if($valid)
+
+{
+
+//do something
+
+}

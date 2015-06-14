@@ -11,7 +11,8 @@ class admincp
 
     public function getHello()
     {
-        Route::get('halo','admincp@halo');
+        echo 'hello';
+        // Route::get('halo','admincp@halo');
         // Alert::make('hello');
     }
      public function getHalo()

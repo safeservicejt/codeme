@@ -1,0 +1,17 @@
+//Check if visitor make request to verify catpcha
+
+if(isset($_REQUEST['btnLogin'])) {
+
+$captchaStatus=Captcha::verify(); // return true/false;
+
+if($captchaStatus) {
+
+//do something if captcha is correct
+
+}
+
+}
+
+//Show captcha form in your html page
+
+<?php echo Captcha::makeForm(); ?>
