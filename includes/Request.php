@@ -3,6 +3,10 @@
 
 class Request
 {
+    private static $requestData=array();
+
+    private static $isParse='no';
+
     public function isImage($keyName)
     {
         if(preg_match('/(\w+)\.(\d+)/i', $keyName,$match))
@@ -39,10 +43,60 @@ class Request
         return false;
     }
 
-
-
-    public function get($reqName = '', $reqValue = '')
+    public function parseGetData()
     {
+
+        if(self::$isParse=='yes')
+        {
+            return true;
+        }
+                
+        $uri=trim($_SERVER['REQUEST_URI']);
+
+        if(preg_match('/\?(.*?)$/i', $uri,$match))
+        {
+            self::$isParse='yes';
+
+            $listData=array();
+
+            parse_str($match[1],$listData);
+
+            self::$requestData=$listData;
+
+            $total=count($listData);
+
+            $listKey=array_keys($listData);
+
+            for ($i=0; $i < $total; $i++) { 
+
+                $key=$listKey[$i];
+
+                $_GET[$key]=$listData[$key];
+
+                $_REQUEST[$key]=$listData[$key];
+
+            }
+        }
+
+        
+    }
+
+    public function post($keyName='')
+    {
+        if(!isset($_POST[$keyName]))
+        {
+            return false;
+        }
+
+        return $_POST[$keyName];
+    }
+
+
+
+    public function get($reqName = '', $reqValue = false)
+    {
+        self::parseGetData();
+
         $result = '';
 
         if (!preg_match('/(\w+)\.(\w+)/i', $reqName, $matchesName)) {
@@ -178,9 +232,12 @@ class Request
 
     public function has($reqName = '')
     {
+
         if(!is_array($reqName))
         {
             $result=self::hasElement($reqName);
+
+            return $result;
         }
         else
         {
@@ -198,6 +255,8 @@ class Request
 
             return true;
         }
+
+
     }
 
 

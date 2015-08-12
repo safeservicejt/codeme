@@ -105,7 +105,28 @@ class Dir
         }
   
     }
+    public function allDir($dir){
 
+        $result=array();
+
+        $ffs = scandir($dir);
+        foreach($ffs as $ff){
+            if($ff != '.' && $ff != '..'){
+
+                // if(preg_match('/.*?\.\w+/i', $dir.$ff))
+                $result[]=$dir.$ff;
+
+                if(is_dir($dir.'/'.$ff))
+                {
+
+                    $tmp=self::allDir($dir.'/'.$ff);
+
+                    $result=array_merge($result,$tmp);
+                } 
+            }
+        }
+        return $result;
+    }   
     public function all($dirPath = '')
     {
         if (is_dir($dirPath)) {

@@ -5,7 +5,45 @@ class Validator
 
     public static $error = '';
 
-    public static $message='';
+    public static $message=array();
+
+    public function getMessage()
+    {
+        $text=implode(', ', self::$message);
+
+        return $text;
+    }
+
+    public function regex($varName=array())
+    {
+        $total=count($varName);
+
+        $keyNames=array_keys($varName);
+
+        for ($i=0; $i < $total; $i++) { 
+
+            $theKey=$keyNames[$i];
+
+            $theRequest=Request::get($theKey,'NOTEXISTS');
+
+            if($theRequest=='NOTEXISTS')
+            {
+                self::$message[]='The request '.$theKey.' not exists. ';
+                
+                return false;
+            }
+
+            if(!preg_match($varName[$theKey], $theRequest))
+            {
+                self::$message[]='The request '.$theKey.' not match '.$varName[$theKey];
+
+                return false;
+            }
+
+        }
+    }
+
+
 
     public function make($varName = array(),$alert=array())
     {
@@ -29,13 +67,13 @@ class Validator
             //     continue;
             // }
 
-            if (preg_match('/required|min|max|email|number|alpha|word|slashes/i', $varName[$keyName])) {
+            if (preg_match('/required|min|max|email|number|alpha|word|slashes|space/i', $varName[$keyName])) {
 
                 if(preg_match('/required/i', $varName[$keyName]) && $keyValue=='VALIDATOR')
                 {
                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
 
-                    self::$message.='Request '.$keyName.' not exists. ';
+                    self::$message[]='Request '.$keyName.' not exists. ';
 
                     return false;
                 }
@@ -64,7 +102,7 @@ class Validator
 
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
 
-                                    self::$message.='Request '.$keyName.' not reach min length is '.$matchRight.' | ';
+                                    self::$message[]='Request '.$keyName.' not reach min length is '.$matchRight;
 
                                     return false;
                                 } 
@@ -77,7 +115,7 @@ class Validator
                                 {
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
 
-                                    self::$message.='Request '.$keyName.' reached max length is '.$matchRight.' | ';
+                                    self::$message[]='Request '.$keyName.' reached max length is '.$matchRight;
 
                                     return false;
                                 } 
@@ -95,7 +133,7 @@ class Validator
                                 {
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
 
-                                    self::$message.='Request '.$keyName.' not exists | ';
+                                    self::$message[]='Request '.$keyName.' not exists';
 
                                     return false;                                    
                                 }
@@ -105,7 +143,7 @@ class Validator
                                 if (!preg_match('/^.*?\@.*?\.\w+$/i', $keyValue))
                                 {
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
-                                    self::$message.='Request '.$keyName.' not is email format | ';                                    
+                                    self::$message[]='Request '.$keyName.' not is email format';                                    
                                     return false;
                                 } 
                                 break;
@@ -113,31 +151,24 @@ class Validator
                                 if (!preg_match('/^\d+$/', $keyValue))
                                 {
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
-                                    self::$message.='Request '.$keyName.' not is number | ';
+                                    self::$message[]='Request '.$keyName.' not is number';
                                     return false;                                    
                                 }
                                 break;
-                            case 'alpha':
-                                if (!preg_match('/^[a-zA-Z]+$/i', $keyValue))
-                                {
-                                    self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
-                                    self::$message.='Request '.$keyName.' not is alpha | ';
-                                    return false;                                    
-                                }
-                                break;
-                            case 'word':
-                                if (!preg_match('/^[a-zA-Z0-9_\@\!\#\$\%\^\&\*\(\)\.\|]+$/i', $keyValue))
-                                {
-                                    self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
-                                    self::$message.='Request '.$keyName.' not is word | ';
-                                    return false;                                    
-                                }
-                                break;
+
                             case 'slashes':
                                 if (preg_match('/\'|\"/i', $keyValue))
                                 {
                                     self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
-                                    self::$message.='Request '.$keyName.' lock by slashes | ';
+                                    self::$message[]='Request '.$keyName.' lock by slashes';
+                                    return false;                                    
+                                }
+                                break;
+                            case 'space':
+                                if (preg_match('/\s/i', $keyValue))
+                                {
+                                    self::$error=isset($alert[$keyName])?$alert[$keyName]:'';
+                                    self::$message[]='Request '.$keyName.' has space(s)';
                                     return false;                                    
                                 }
                                 break;
@@ -164,6 +195,8 @@ class Validator
 
 
 }
+
+
 
 
 ?>

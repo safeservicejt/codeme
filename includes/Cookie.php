@@ -3,9 +3,9 @@
 
 class Cookie
 {
-    public function get($cookieName = '')
+    public function get($cookieName = '', $defaultVal=false)
     {
-        $cookie = isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : false;
+        $cookie = isset($_COOKIE[$cookieName]) ? $_COOKIE[$cookieName] : $defaultVal;
 
         return $cookie;
     }
