@@ -16,7 +16,7 @@ class Captcha
 
         imagefill($main_img, 0, 0, $bg_color);
 
-        $captcha_str = String::randNumber(5) . '' . String::randNumber(5);
+        $captcha_str = String::randNumber(6);
 
         $dbColor = array(
             0 => array(100, 161, 39),
