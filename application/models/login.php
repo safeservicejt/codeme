@@ -28,9 +28,9 @@ function isUser($username, $password)
 
     if ((int)$numRows == 1) {
 //        Create cookie store login info,expires is 1 day
-        Cookie::make('username', $username, time() + 84600);
+        Cookie::make('username', $username, time() + 86400);
 
-        Cookie::make('password', $password, time() + 84600);
+        Cookie::make('password', $password, time() + 86400);
 
         return true;
     }
